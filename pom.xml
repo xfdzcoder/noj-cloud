@@ -19,6 +19,7 @@
     <modules>
         <module>code-sandbox</module>
         <module>common</module>
+        <module>ai-adapter</module>
     </modules>
 
     <properties>
