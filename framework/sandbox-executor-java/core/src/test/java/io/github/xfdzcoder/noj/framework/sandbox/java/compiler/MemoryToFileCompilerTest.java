@@ -1,7 +1,7 @@
 package io.github.xfdzcoder.noj.framework.sandbox.java.compiler;
 
 import io.github.xfdzcoder.noj.framework.sandbox.java.complier.CompilerException;
-import io.github.xfdzcoder.noj.framework.sandbox.java.complier.MemoryCompiler;
+import io.github.xfdzcoder.noj.framework.sandbox.java.complier.MemoryToFileCompiler;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.Collections;
 /**
  * @author: xfdzcoder
  */
-public class MemoryCompilerTest {
+public class MemoryToFileCompilerTest {
 
     @Test
     public void test() {
@@ -23,7 +23,7 @@ public class MemoryCompilerTest {
                 """;
 
         try {
-            new MemoryCompiler().compiler("a", "Main", code, Collections.singleton("-proc:none"));
+            new MemoryToFileCompiler().compiler("a", "Main", code, Collections.singleton("-proc:none"));
         } catch (CompilerException e) {
             throw new RuntimeException(e);
         }

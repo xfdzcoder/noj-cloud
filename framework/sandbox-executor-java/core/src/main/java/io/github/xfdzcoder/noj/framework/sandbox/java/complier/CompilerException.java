@@ -1,9 +1,11 @@
 package io.github.xfdzcoder.noj.framework.sandbox.java.complier;
 
+import java.io.IOException;
+
 /**
  * @author: xfdzcoder
  */
-public class CompilerException extends Exception {
+public class CompilerException extends IOException {
 
     public CompilerException() {
     }
@@ -12,7 +14,7 @@ public class CompilerException extends Exception {
         super(message);
     }
 
-    public CompilerException(ClassNotFoundException e) {
+    public CompilerException(Exception e) {
         super(e);
     }
 }

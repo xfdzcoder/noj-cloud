@@ -6,7 +6,7 @@
 
     <groupId>io.github.xfdzcoder.noj</groupId>
     <artifactId>noj-cloud</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <packaging>pom</packaging>
 
@@ -19,6 +19,7 @@
     <modules>
         <module>code-sandbox</module>
         <module>framework</module>
+        <module>common</module>
     </modules>
 
     <properties>
@@ -27,14 +28,62 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <revision>1.0.0</revision>
+
         <version.spring-boot>3.2.4</version.spring-boot>
         <version.spring-cloud-alibaba>2023.0.1.0</version.spring-cloud-alibaba>
         <version.spring-cloud>2023.0.1</version.spring-cloud>
+
         <version.hutool>5.8.29</version.hutool>
+        <version.docker-java>3.4.0</version.docker-java>
+        <version.mybatis-plus>3.5.7</version.mybatis-plus>
+        <version.knife4j>4.4.0</version.knife4j>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+                <artifactId>common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.xfdzcoder.noj.cloud.framework.sandbox.java</groupId>
+                <artifactId>core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${version.knife4j}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${version.mybatis-plus}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.docker-java</groupId>
+                <artifactId>docker-java-core</artifactId>
+                <version>${version.docker-java}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.docker-java</groupId>
+                <artifactId>docker-java-transport-httpclient5</artifactId>
+                <version>${version.docker-java}</version>
+            </dependency>
 
             <dependency>
                 <groupId>cn.hutool</groupId>

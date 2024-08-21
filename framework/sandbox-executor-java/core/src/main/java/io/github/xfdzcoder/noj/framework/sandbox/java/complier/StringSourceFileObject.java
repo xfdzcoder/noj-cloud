@@ -24,17 +24,14 @@ public class StringSourceFileObject extends SimpleJavaFileObject {
 
     private byte[] byteCode;
 
-    public StringSourceFileObject(String packageName, String className, String code) {
-        super(parse(packageName, className), Kind.SOURCE);
+    public StringSourceFileObject(String className, String code) {
+        super(parse(className), Kind.SOURCE);
         this.code = code;
-        this.fullClassName = packageName.isEmpty() ? className : packageName + "." + className;
+        this.fullClassName = className;
     }
 
-    private static URI parse(String packageName, String className) {
-        if (packageName.isEmpty()) {
-            return URI.create("string:///" + className + Kind.SOURCE.extension);
-        }
-        return URI.create("string:///" + packageName.replace('.', '/') + "/" + className + Kind.SOURCE.extension);
+    private static URI parse(String className) {
+        return URI.create("string:///" + className + Kind.SOURCE.extension);
     }
 
     public byte[] getByteCode() {
