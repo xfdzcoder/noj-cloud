@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:mysql://123.60.150.67:1103/noj
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
