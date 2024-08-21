@@ -32,11 +32,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.xfdzcoder.noj.cloud.framework.sandbox.java</groupId>
-            <artifactId>core</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>

@@ -1,5 +1,7 @@
-package io.github.xfdzcoder.noj.framework.sandbox.java;
+package io.github.xfdzcoder.noj.cloud.sandbox.utils.compiler;
 
+
+import lombok.Getter;
 
 /**
  * 退出类型。
@@ -7,6 +9,7 @@ package io.github.xfdzcoder.noj.framework.sandbox.java;
  * @author: xfdzcoder
  */
 
+@Getter
 public enum ExitTypeEnum {
 
     NO_PERMISSION(-1, "权限不足"),
@@ -32,11 +35,4 @@ public enum ExitTypeEnum {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

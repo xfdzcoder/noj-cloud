@@ -18,7 +18,6 @@
     </developers>
     <modules>
         <module>code-sandbox</module>
-        <module>framework</module>
         <module>common</module>
     </modules>
 
@@ -49,18 +48,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--
+                Custom
+            -->
             <dependency>
                 <groupId>io.github.xfdzcoder.noj.cloud</groupId>
                 <artifactId>common</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <dependency>
-                <groupId>io.github.xfdzcoder.noj.cloud.framework.sandbox.java</groupId>
-                <artifactId>core</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
+            <!--
+                Others
+            -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>

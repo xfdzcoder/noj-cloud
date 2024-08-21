@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.framework.sandbox.java.complier;
+package io.github.xfdzcoder.noj.cloud.sandbox.utils.compiler;
 
 import javax.tools.SimpleJavaFileObject;
 import java.io.ByteArrayOutputStream;
