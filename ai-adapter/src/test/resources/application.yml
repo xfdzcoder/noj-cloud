@@ -1,0 +1,8 @@
+ai:
+  spark:
+    model: four_ultra
+    api-id: d151c65d
+    api-secret: MWRlNTYyYjEzNDQ0OWQwNjI1MDFjMTVk
+    api-key: 22da839786a28da746428daacb0f8a30
+    api-password: GeNyMbQQXaCjGBVwvcrv:vzMWVAFxgaiVUadHznRK
+    http-url: https://spark-api-open.xf-yun.com/v1/chat/completions
