@@ -17,10 +17,11 @@ import java.util.*;
 public class BigModelNew extends WebSocketListener {
     // 地址与鉴权信息  https://spark-api.xf-yun.com/v1.1/chat   1.5地址  domain参数为general
     // 地址与鉴权信息  https://spark-api.xf-yun.com/v2.1/chat   2.0地址  domain参数为generalv2
-    public static final String hostUrl = "https://spark-api.xf-yun.com/v2.1/chat";
-    public static final String appid = "";
-    public static final String apiSecret = "";
-    public static final String apiKey = "";
+//    public static final String hostUrl = "https://spark-api.xf-yun.com/v2.1/chat";
+    public static final String hostUrl = "https://spark-api.xf-yun.com/v4.0/chat";
+    public static final String appid = "d151c65d";
+    public static final String apiSecret = "MWRlNTYyYjEzNDQ0OWQwNjI1MDFjMTVk";
+    public static final String apiKey = "22da839786a28da746428daacb0f8a30";
 
     public static List<RoleContent> historyList=new ArrayList<>(); // 对话历史存储集合
 
@@ -102,7 +103,7 @@ public class BigModelNew extends WebSocketListener {
 
                 JSONObject parameter=new JSONObject(); // parameter参数
                 JSONObject chat=new JSONObject();
-                chat.put("domain","generalv2");
+                chat.put("domain","4.0Ultra");
                 chat.put("temperature",0.5);
                 chat.put("max_tokens",4096);
                 parameter.put("chat",chat);
