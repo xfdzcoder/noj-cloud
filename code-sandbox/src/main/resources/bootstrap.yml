@@ -1,5 +1,7 @@
 server:
   port: 5010
+  servlet:
+    context-path: /sandbox
 spring:
   application:
     name: sandbox

@@ -57,8 +57,7 @@ public class SparkService {
     public String ask(String question) {
         return ask(SparkHttpRequest.builder(sparkProperties)
                                    .message(question)
-                                   .build()
-        )
+                                   .build())
                 .getAnswer();
     }
 }

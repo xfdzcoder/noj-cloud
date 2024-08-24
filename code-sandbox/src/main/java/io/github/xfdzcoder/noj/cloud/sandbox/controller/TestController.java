@@ -23,6 +23,11 @@ public class TestController {
     @Autowired
     private DockerJavaExecutor dockerJavaExecutor;
 
+    @GetMapping
+    public String test() {
+        return "sandbox started";
+    }
+
     @GetMapping("/execute")
     public ExecuteResult testExecute() {
         ExecuteInfo executeInfo = executeInfoService.getById(1825816388385075201L);
