@@ -47,7 +47,7 @@ public class SparkHttpTest {
 
     @Test
     public void testSparkService() {
-        System.out.println(sparkService.ask("谈谈你对美剧《无耻之徒》的看法"));
+        System.out.println(sparkService.ask("一句话谈谈你对美剧《无耻之徒》的看法"));
     }
 
     @Test

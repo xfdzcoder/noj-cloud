@@ -7,6 +7,7 @@ import io.github.xfdzcoder.noj.cloud.aiadapter.spark.v4ultra.dto.SparkHttpRespon
 import io.github.xfdzcoder.noj.cloud.aiadapter.spark.v4ultra.exception.SparkHttpException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -24,16 +25,9 @@ public class SparkService {
     @Autowired
     private SparkProperties sparkProperties;
 
+    @Qualifier("SparkHttpRestClient")
+    @Autowired
     private RestClient restClient;
-
-    @PostConstruct
-    public void init() {
-        restClient = RestClient.builder()
-                               .baseUrl(sparkProperties.getHttpUrl())
-                               .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                               .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + sparkProperties.getApiPassword())
-                               .build();
-    }
 
     public SparkHttpResponse ask(SparkHttpRequest request) {
         ResponseEntity<SparkHttpResponse> responseEntity = restClient.post()
