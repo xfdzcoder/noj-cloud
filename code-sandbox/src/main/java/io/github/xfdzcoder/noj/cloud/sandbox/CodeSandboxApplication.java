@@ -10,7 +10,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @author: xfdzcoder
  */
 
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @SpringBootApplication
 public class CodeSandboxApplication {
 
