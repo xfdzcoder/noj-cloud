@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.aiadapter.controller;
 
 import io.github.xfdzcoder.noj.cloud.aiadapter.dto.req.SparkReq;
 import io.github.xfdzcoder.noj.cloud.aiadapter.spark.v4ultra.service.SparkService;
+import io.github.xfdzcoder.noj.cloud.common.web.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +21,8 @@ public class SparkController {
     private SparkService sparkService;
 
     @PostMapping("/ask")
-    public String ask(@RequestBody SparkReq sparkReq) {
-        return sparkService.ask(sparkReq.getQuestion());
+    public Response<String> ask(@RequestBody SparkReq sparkReq) {
+        return Response.ok(sparkService.ask(sparkReq.getQuestion()));
     }
 
 }

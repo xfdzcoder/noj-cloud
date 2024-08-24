@@ -1,5 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.aiadapter.controller;
 
+import io.github.xfdzcoder.noj.cloud.common.web.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping
-    public String test() {
-        return "ai-adapter stated";
+    public Response<String> test() {
+        return Response.ok("ai-adapter stated", "");
     }
 
 }
