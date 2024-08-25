@@ -1,0 +1,28 @@
+server:
+  port: 5030
+  servlet:
+    context-path: /question
+spring:
+  application:
+    name: question
+  cloud:
+    nacos:
+      server-addr: ${nacos.server-addr}:${nacos.port}
+      username: ${nacos.username}
+      password: ${nacos.password}
+      config:
+        file-extension: ${nacos.file-extension}
+        group: ${nacos.manage-group}
+        namespace: ${nacos.namespace}
+        shared-configs:
+          - data-id: redis.yml
+            refresh: true
+            group: ${nacos.common-group}
+          - data-id: mysql.yml
+            refresh: true
+            group: ${nacos.common-group}
+      discovery:
+        group: ${nacos.manage-group}
+        namespace: ${nacos.namespace}
+  config:
+    import: optional:none

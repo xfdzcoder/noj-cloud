@@ -17,3 +17,4 @@
 | gateway    | 5000 |
 | sandbox    | 5010 |
 | ai-adapter | 5020 |
+| question   | 5030 |
