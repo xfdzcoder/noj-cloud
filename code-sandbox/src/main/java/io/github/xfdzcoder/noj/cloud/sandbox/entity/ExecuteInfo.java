@@ -1,18 +1,13 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.entity;
 
-import java.io.Serial;
-import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serializable;
-
 import io.github.xfdzcoder.noj.cloud.common.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * 执行信息表(ExecuteInfo)表实体类
@@ -70,6 +65,7 @@ public class ExecuteInfo extends BaseEntity implements Serializable {
      */
     @Schema(description = "编程语言类型")
     @TableField("language_type")
+    // TODO 2024/8/25 12:43 on dev-xfdzcoder: 待实现：多语言支持
     private String languageType;
 
 

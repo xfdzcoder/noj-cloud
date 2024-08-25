@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.utils.compiler;
 
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
 
 /**
@@ -26,6 +27,7 @@ public enum ExitTypeEnum {
 
     ;
 
+    @EnumValue
     private final int code;
 
     private final String message;

@@ -21,6 +21,7 @@
         <module>common</module>
         <module>copilot</module>
         <module>gateway</module>
+        <module>question</module>
     </modules>
 
     <properties>

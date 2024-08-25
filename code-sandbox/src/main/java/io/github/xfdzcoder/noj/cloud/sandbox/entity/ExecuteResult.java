@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 import io.github.xfdzcoder.noj.cloud.common.entity.BaseEntity;
+import io.github.xfdzcoder.noj.cloud.sandbox.utils.compiler.ExitTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -121,7 +122,7 @@ public class ExecuteResult extends BaseEntity implements Serializable {
      */
     @Schema(description = "退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；")
     @TableField("exit_type")
-    private Integer exitType;
+    private ExitTypeEnum exitType;
 
 
 }
