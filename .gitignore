@@ -1,1 +1,4 @@
 conf/config-dev.yml
+.idea
+target
+logs

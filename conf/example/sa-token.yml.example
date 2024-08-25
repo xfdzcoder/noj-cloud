@@ -1,0 +1,104 @@
+
+sa-token:
+
+  # 自定义属性：refresh-token-timeout，单位：秒
+  refresh-token-timeout: 2592000
+
+
+  # Token 名称 （同时也是 Cookie 名称、数据持久化前缀）
+  token-name: satoken
+
+  # Token 有效期（单位：秒），默认30天，-1代表永不过期 参考：token有效期详解
+  timeout: 86400
+
+  # Token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结（例如可以设置为1800代表30分钟内无操作就冻结） 参考：token有效期详解
+  active-timeout: -1
+
+  # 是否启用动态 active-timeout 功能，如不需要请设置为 false，节省缓存请求次数
+  dynamic-active-timeout: false
+
+  # 是否允许同一账号并发登录 （为 true 时允许一起登录，为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token，为 false 时每次登录新建一个 token）
+  is-share: true
+
+  # 同一账号最大登录数量，-1代表不限 （只有在 is-concurrent=true，is-share=false 时此配置才有效），详解
+  max-login-count: 12
+
+  # 在每次创建 Token 时的最高循环次数，用于保证 Token 唯一性（-1=不循环重试，直接使用）
+  max-try-times: 12
+
+  # 是否尝试从 请求体 里读取 Token
+  is-read-body: true
+
+  # 是否尝试从 header 里读取 Token
+  is-read-header: true
+
+  # 是否尝试从 cookie 里读取 Token，此值为 false 后，StpUtil.login(id) 登录时也不会再往前端注入Cookie
+  is-read-cookie: true
+
+  # 是否在登录后将 Token 写入到响应头
+  is-write-header: false
+
+  # token风格， 参考：自定义Token风格
+  token-style: uuid
+
+  # 默认数据持久组件实现类中，每次清理过期数据间隔的时间 （单位: 秒） ，默认值30秒，设置为-1代表不启动定时清理
+  data-refresh-period: 30
+
+  # 获取 Token-Session 时是否必须登录 （如果配置为true，会在每次获取 Token-Session 时校验是否登录），详解
+  token-session-check-login: true
+
+  # 是否打开自动续签 （如果此值为true，框架会在每次直接或间接调用 getLoginId() 时进行一次过期检查与续签操作），参考：token有效期详解
+  auto-renew: true
+
+  # token前缀，例如填写 Bearer 实际传参 satoken: Bearer xxxx-xxxx-xxxx-xxxx 参考：自定义Token前缀
+  token-prefix: null
+
+  # 是否在初始化配置时打印版本字符画
+  is-print: true
+
+  # 是否打印操作日志
+  is-log: false
+
+  # 日志等级（trace、debug、info、warn、error、fatal），此值与 log-level-int 联动
+  log-level: trace
+
+  # 日志等级 int 值（1=trace、2=debug、3=info、4=warn、5=error、6=fatal），此值与 log-level 联动
+  log-level-int: 1
+
+  # 是否打印彩色日志，true=打印彩色日志，false=打印黑白日志，null=框架根据运行终端自行判断是否打印彩色日志
+  is-color-log: null
+
+  # jwt秘钥 （只有集成 sa-token-temp-jwt 模块时此参数才会生效），参考：和 jwt 集成
+  jwt-secret-key: null
+
+  # Same-Token的有效期 （单位: 秒），参考：内部服务外网隔离
+  same-token-timeout: 86400
+
+  # Http Basic 认证的账号和密码 参考：Http Basic 认证
+  basic: ""
+
+  # 配置当前项目的网络访问地址
+  curr-domain: null
+
+  # 是否校验Same-Token（部分rpc插件有效）
+  check-same-token: false
+
+  # Cookie配置对象
+  cookie:
+    # Cookie的名称
+    name: satoken
+    # Cookie的有效期 (单位: 秒)
+    timeout: 2592000
+    # Cookie的作用域
+    domain: null
+    # Cookie的路径
+    path: /
+    # 是否只允许https传输
+    http-only: true
+    # 是否只允许https传输
+    secure: false
+    # 是否启用同源策略
+    same-site: null

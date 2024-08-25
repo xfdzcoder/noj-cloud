@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="PROGRAM_PARAMETERS" value="--spring.config.additional-location=conf/config-dev.yml --logging.config=conf/logback-spring.xml" />
+    <option name="SPRING_BOOT_MAIN_CLASS" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
