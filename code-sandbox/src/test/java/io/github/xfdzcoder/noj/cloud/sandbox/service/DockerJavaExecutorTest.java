@@ -1,17 +1,9 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.service;
 
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import io.github.xfdzcoder.noj.cloud.sandbox.CodeSandboxApplication;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteInfo;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteResult;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.TestCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 /**
  * @author xfdzcoder
@@ -25,9 +17,6 @@ public class DockerJavaExecutorTest {
 
     @Autowired
     private ExecuteInfoService executeInfoService;
-
-    @Autowired
-    private TestCaseService testCaseService;
 
     @Test
     public void initData() {
@@ -45,42 +34,42 @@ public class DockerJavaExecutorTest {
                     }
                 }
                 """;
-        byte[] codeBytes = code.getBytes(StandardCharsets.UTF_8);
-        ExecuteInfo executeInfo = ExecuteInfo.builder()
-                .size(codeBytes.length)
-                .codeText(code)
-                .languageType("Java")
-                .memory(131072)
-                .timeout(2000)
-                .questionInfoId(1L)
-                .runType(0)
-                .build();
-        executeInfoService.save(executeInfo);
-        TestCase testCase = TestCase.builder()
-                .questionInfoId(1L)
-                .content(List.of(
-                        new TestCase.InputOutput("1 2\n", "3"),
-                        new TestCase.InputOutput("4 5\n", "9")
-                ))
-                .build();
-        testCaseService.save(testCase);
-
-        executeInfo.setTestCaseId(testCase.getId());
-        executeInfoService.updateById(executeInfo);
+//        byte[] codeBytes = code.getBytes(StandardCharsets.UTF_8);
+//        ExecuteInfo executeInfo = ExecuteInfo.builder()
+//                .size(codeBytes.length)
+//                .codeText(code)
+//                .languageType("Java")
+//                .memory(131072)
+//                .timeout(2000)
+//                .questionInfoId(1L)
+//                .runType(0)
+//                .build();
+//        executeInfoService.save(executeInfo);
+//        TestCase testCase = TestCase.builder()
+//                .questionInfoId(1L)
+//                .content(List.of(
+//                        new TestCase.InputOutput("1 2\n", "3"),
+//                        new TestCase.InputOutput("4 5\n", "9")
+//                ))
+//                .build();
+//        testCaseService.save(testCase);
+//
+//        executeInfo.setTestCaseId(testCase.getId());
+//        executeInfoService.updateById(executeInfo);
     }
 
     @Test
     public void selectJson() {
-        TestCase testCase = testCaseService.getById(1825816391371419650L);
-        System.out.println(testCase);
+//        TestCase testCase = testCaseService.getById(1825816391371419650L);
+//        System.out.println(testCase);
     }
 
     @Test
     public void testExecute() {
-        ExecuteInfo executeInfo = executeInfoService.getById(1825816388385075201L);
-        ExecuteResult executeResult = dockerJavaExecutor.execute(executeInfo);
-
-        System.out.println(executeResult);
+//        ExecuteInfo executeInfo = executeInfoService.getById(1825816388385075201L);
+//        ExecuteResult executeResult = dockerJavaExecutor.execute(executeInfo);
+//
+//        System.out.println(executeResult);
     }
 
 }

@@ -2,7 +2,7 @@ package io.github.xfdzcoder.noj.cloud.sandbox.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.github.xfdzcoder.noj.cloud.sandbox.mapper.ExecuteInfoMapper;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteInfo;
+import io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity.ExecuteInfo;
 import io.github.xfdzcoder.noj.cloud.sandbox.service.ExecuteInfoService;
 import org.springframework.stereotype.Service;
 

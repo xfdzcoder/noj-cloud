@@ -1,7 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteResult;
+import io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity.ExecuteResult;
 
 /**
  * 运行结果表(ExecuteResult)表服务接口

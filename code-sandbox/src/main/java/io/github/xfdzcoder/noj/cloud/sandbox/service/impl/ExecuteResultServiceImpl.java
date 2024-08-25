@@ -2,7 +2,7 @@ package io.github.xfdzcoder.noj.cloud.sandbox.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.github.xfdzcoder.noj.cloud.sandbox.mapper.ExecuteResultMapper;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteResult;
+import io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity.ExecuteResult;
 import io.github.xfdzcoder.noj.cloud.sandbox.service.ExecuteResultService;
 import org.springframework.stereotype.Service;
 

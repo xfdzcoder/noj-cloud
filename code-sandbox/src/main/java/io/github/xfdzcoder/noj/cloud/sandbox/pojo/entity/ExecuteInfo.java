@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.sandbox.entity;
+package io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

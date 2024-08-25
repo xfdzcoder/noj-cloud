@@ -1,7 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.github.xfdzcoder.noj.cloud.sandbox.entity.ExecuteInfo;
+import io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity.ExecuteInfo;
 
 import org.apache.ibatis.annotations.Mapper;
 

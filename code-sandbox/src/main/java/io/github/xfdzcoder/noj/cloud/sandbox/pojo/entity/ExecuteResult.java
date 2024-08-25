@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.sandbox.entity;
+package io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
