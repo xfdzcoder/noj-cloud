@@ -26,6 +26,12 @@
         <dependency>
             <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
             <artifactId>common-dependencies</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+                    <artifactId>common-dao</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--

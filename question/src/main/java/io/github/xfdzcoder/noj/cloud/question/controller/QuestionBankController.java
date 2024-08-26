@@ -1,14 +1,13 @@
 package io.github.xfdzcoder.noj.cloud.question.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.common.dao.web.Response;
+import io.github.xfdzcoder.noj.cloud.question.dto.condition.QuestionBankCondition;
 import io.github.xfdzcoder.noj.cloud.question.entity.QuestionBank;
 import io.github.xfdzcoder.noj.cloud.question.service.QuestionBankService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 题库表(QuestionBank)表控制层
@@ -26,8 +25,9 @@ public class QuestionBankController {
     private QuestionBankService questionBankService;
 
     @PostMapping("list")
-    public Response<QuestionBank> list() {
-        return Response.ok();
+    public Response<Page<QuestionBank>> list(QuestionBankCondition condition) {
+        Page<QuestionBank> page = questionBankService.page(condition.getPage(), condition.getLambdaQueryWrapper());
+        return Response.ok(page);
     }
 
     @PostMapping
@@ -36,5 +36,16 @@ public class QuestionBankController {
         return Response.ok();
     }
 
+    @PutMapping
+    public Response<String> edit(@RequestBody QuestionBank questionBank) {
+        questionBankService.updateById(questionBank);
+        return Response.ok();
+    }
+
+    @DeleteMapping("{id}")
+    public Response<String> delete(@PathVariable("id") Long id) {
+        questionBankService.removeById(id);
+        return Response.ok();
+    }
 }
 

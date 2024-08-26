@@ -1,7 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.copilot.controller;
 
 
-import io.github.xfdzcoder.noj.cloud.common.dao.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
 import io.github.xfdzcoder.noj.cloud.copilot.dto.req.SparkReq;
 import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.service.SparkService;
 import org.springframework.beans.factory.annotation.Autowired;
