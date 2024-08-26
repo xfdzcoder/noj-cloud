@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.github.xfdzcoder.noj.cloud.common.dependencies.config.CommonAutoConfiguration

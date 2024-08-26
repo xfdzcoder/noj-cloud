@@ -39,6 +39,7 @@
         <version.hutool>5.8.29</version.hutool>
         <version.docker-java>3.4.0</version.docker-java>
         <version.mybatis-plus>3.5.7</version.mybatis-plus>
+        <version.p6spy>1.9.1</version.p6spy>
         <version.knife4j>4.4.0</version.knife4j>
     </properties>
 
@@ -56,26 +57,26 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--
-                Custom
-            -->
-            <dependency>
-                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-                <artifactId>common-dependencies</artifactId>
-                <version>${revision}</version>
-            </dependency>
+<!--            &lt;!&ndash;-->
+<!--                Custom-->
+<!--            &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>-->
+<!--                <artifactId>common-dependencies</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
-            <dependency>
-                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-                <artifactId>common-dao</artifactId>
-                <version>${revision}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>-->
+<!--                <artifactId>common-dao</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
-            <dependency>
-                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-                <artifactId>common-web</artifactId>
-                <version>${revision}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>-->
+<!--                <artifactId>common-web</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
             <!--
                 Others
@@ -90,6 +91,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>${version.mybatis-plus}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.gavlyukovskiy</groupId>
+                <artifactId>p6spy-spring-boot-starter</artifactId>
+                <version>${version.p6spy}</version>
             </dependency>
 
             <dependency>
@@ -137,20 +144,15 @@
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${version.spring-boot}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

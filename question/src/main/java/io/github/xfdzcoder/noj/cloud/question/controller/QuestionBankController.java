@@ -2,7 +2,7 @@ package io.github.xfdzcoder.noj.cloud.question.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.xfdzcoder.noj.cloud.common.dao.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
 import io.github.xfdzcoder.noj.cloud.question.dto.condition.QuestionBankCondition;
 import io.github.xfdzcoder.noj.cloud.question.entity.QuestionBank;
 import io.github.xfdzcoder.noj.cloud.question.service.QuestionBankService;

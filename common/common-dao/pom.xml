@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.xfdzcoder.noj.cloud</groupId>
         <artifactId>common</artifactId>
-        <version>1.0.0</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
@@ -33,6 +33,11 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>p6spy-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -25,6 +25,7 @@
         <dependency>
             <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
             <artifactId>common-dependencies</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!--
@@ -81,4 +82,12 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
