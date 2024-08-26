@@ -55,8 +55,8 @@
                 Custom
             -->
             <dependency>
-                <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-                <artifactId>common</artifactId>
+                <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+                <artifactId>common-dependencies</artifactId>
                 <version>${revision}</version>
             </dependency>
 

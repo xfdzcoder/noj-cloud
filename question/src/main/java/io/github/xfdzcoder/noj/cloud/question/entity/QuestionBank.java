@@ -1,11 +1,13 @@
 package io.github.xfdzcoder.noj.cloud.question.entity;
 
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.xfdzcoder.noj.cloud.common.entity.BaseEntity;
+import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -23,6 +25,7 @@ import java.io.Serializable;
 @TableName("question_bank")
 public class QuestionBank extends BaseEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 632533623214714071L;
 
     /**

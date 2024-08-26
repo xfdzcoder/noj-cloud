@@ -1,6 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.pojo.bo;
 
-import io.github.xfdzcoder.noj.cloud.sandbox.acl.dto.ExecuteInfoDTO;
 import lombok.Data;
 
 import java.util.List;

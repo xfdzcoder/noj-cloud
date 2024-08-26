@@ -1,23 +1,15 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity;
 
-import java.io.Serial;
-import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serializable;
-
-import io.github.xfdzcoder.noj.cloud.common.entity.BaseEntity;
+import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
 import io.github.xfdzcoder.noj.cloud.sandbox.utils.compiler.ExitTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * 运行结果表(ExecuteResult)表实体类

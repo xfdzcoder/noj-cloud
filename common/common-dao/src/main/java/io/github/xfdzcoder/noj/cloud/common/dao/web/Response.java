@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.common.web;
+package io.github.xfdzcoder.noj.cloud.common.dao.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

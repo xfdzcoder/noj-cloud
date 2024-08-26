@@ -2,7 +2,7 @@ package io.github.xfdzcoder.noj.cloud.sandbox.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.github.xfdzcoder.noj.cloud.common.entity.BaseEntity;
+import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 

@@ -22,10 +22,6 @@
         <!--
             Custom
         -->
-        <dependency>
-            <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
 
         <!--
             spring-boot-stater
