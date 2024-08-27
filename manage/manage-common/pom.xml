@@ -4,21 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.xfdzcoder.noj</groupId>
-        <artifactId>noj-cloud</artifactId>
+        <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+        <artifactId>manage</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-    <artifactId>manage</artifactId>
+    <groupId>io.github.xfdzcoder.noj.cloud.manage</groupId>
+    <artifactId>manage-common</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>manage-gateway</module>
-        <module>code-sandbox</module>
-        <module>manage-question</module>
-        <module>manage-user</module>
-        <module>manage-common</module>
+        <module>manage-common-dependencies</module>
     </modules>
 
     <properties>

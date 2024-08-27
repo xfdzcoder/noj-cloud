@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>io.github.xfdzcoder.noj.cloud.manage</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>manage-gateway</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -24,13 +24,17 @@
             Custom
         -->
         <dependency>
-            <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-            <artifactId>common-dependencies</artifactId>
+            <groupId>io.github.xfdzcoder.noj.cloud.manage.common</groupId>
+            <artifactId>manage-common-dependencies</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
                     <artifactId>common-dao</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>cn.dev33</groupId>
+                    <artifactId>sa-token-spring-boot3-starter</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -94,21 +98,6 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-reactor-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- Sa-Token 整合 jwt -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-jwt</artifactId>
-        </dependency>
-        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-redis-jackson</artifactId>
-            <version>1.38.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
         </dependency>
     </dependencies>
 

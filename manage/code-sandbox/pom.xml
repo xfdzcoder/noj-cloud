@@ -24,8 +24,8 @@
             Custom
         -->
         <dependency>
-            <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-            <artifactId>common-dependencies</artifactId>
+            <groupId>io.github.xfdzcoder.noj.cloud.manage.common</groupId>
+            <artifactId>manage-common-dependencies</artifactId>
             <version>${project.version}</version>
         </dependency>
 

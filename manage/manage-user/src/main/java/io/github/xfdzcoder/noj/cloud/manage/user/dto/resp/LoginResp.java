@@ -1,5 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.manage.user.dto.resp;
 
+import io.github.xfdzcoder.noj.cloud.manage.user.entity.Community;
 import io.github.xfdzcoder.noj.cloud.manage.user.entity.ManageUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +18,7 @@ public class LoginResp {
     private String token;
 
     private ManageUser manageUser;
+
+    private Community community;
 
 }
