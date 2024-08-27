@@ -17,11 +17,9 @@
         </developer>
     </developers>
     <modules>
-        <module>code-sandbox</module>
         <module>common</module>
-        <module>copilot</module>
-        <module>gateway</module>
-        <module>question</module>
+        <module>manage</module>
+        <module>miniprogram</module>
     </modules>
 
     <properties>
