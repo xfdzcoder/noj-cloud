@@ -1,17 +1,15 @@
 package io.github.xfdzcoder.noj.cloud.manage.gateway.auth.config;
 
-import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.reactor.filter.SaReactorFilter;
 import cn.dev33.satoken.router.SaHttpMethod;
 import cn.dev33.satoken.router.SaRouter;
-import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

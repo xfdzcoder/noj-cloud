@@ -1,7 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.controller;
 
 
-import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,6 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.manage.user.controller;
 
-import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import io.github.xfdzcoder.noj.cloud.manage.user.dto.req.LoginReq;
 import io.github.xfdzcoder.noj.cloud.manage.user.dto.resp.LoginResp;
 import io.github.xfdzcoder.noj.cloud.manage.user.exception.ManageUserException;

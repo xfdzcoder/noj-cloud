@@ -1,6 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.manage.question.entity;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * 题库表(QuestionBank)表实体类
  *
  * @author makejava
- * @since 2024-08-25 15:35:01
+ * @since 2024-08-27 21:56:31
  */
 
 @Data
@@ -26,7 +25,7 @@ import java.io.Serializable;
 public class QuestionBank extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 632533623214714071L;
+    private static final long serialVersionUID = 509555864529395258L;
 
     /**
      * 题圈 ID

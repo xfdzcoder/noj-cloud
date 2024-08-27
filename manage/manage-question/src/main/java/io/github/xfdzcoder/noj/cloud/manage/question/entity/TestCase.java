@@ -1,6 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.manage.question.entity;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * 测试用例表(TestCase)表实体类
  *
  * @author makejava
- * @since 2024-08-25 15:35:01
+ * @since 2024-08-27 21:56:31
  */
 
 @Data
@@ -26,7 +25,7 @@ import java.io.Serializable;
 public class TestCase extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -41463835920842471L;
+    private static final long serialVersionUID = -59682193424819156L;
 
     /**
      * 所属题目 ID

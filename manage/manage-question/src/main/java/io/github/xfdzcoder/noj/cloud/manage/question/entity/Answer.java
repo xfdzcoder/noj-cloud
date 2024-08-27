@@ -1,6 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.manage.question.entity;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.github.xfdzcoder.noj.cloud.common.dao.entity.BaseEntity;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * 答案表(Answer)表实体类
  *
  * @author makejava
- * @since 2024-08-25 15:35:02
+ * @since 2024-08-27 21:56:32
  */
 
 @Data
@@ -26,7 +25,7 @@ import java.io.Serializable;
 public class Answer extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -80855170325444701L;
+    private static final long serialVersionUID = 351067864718432990L;
 
     /**
      * 所属题目 ID
@@ -51,7 +50,7 @@ public class Answer extends BaseEntity implements Serializable {
      */
     @Schema(description = "是否是正确答案")
     @TableField("correct")
-    private Integer correct;
+    private Boolean correct;
     /**
      * 排序
      */

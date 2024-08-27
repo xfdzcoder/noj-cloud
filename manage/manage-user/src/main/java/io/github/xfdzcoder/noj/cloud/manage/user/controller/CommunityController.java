@@ -3,7 +3,7 @@ package io.github.xfdzcoder.noj.cloud.manage.user.controller;
 
 import io.github.xfdzcoder.noj.cloud.manage.user.service.CommunityService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import io.github.xfdzcoder.noj.cloud.manage.user.dto.condition.CommunityCondition;
 import io.github.xfdzcoder.noj.cloud.manage.user.entity.Community;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package io.github.xfdzcoder.noj.cloud.manage.user.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.xfdzcoder.noj.cloud.common.web.web.Response;
+import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import io.github.xfdzcoder.noj.cloud.manage.user.dto.condition.ManageUserCondition;
 import io.github.xfdzcoder.noj.cloud.manage.user.entity.ManageUser;
 import io.github.xfdzcoder.noj.cloud.manage.user.service.ManageUserService;

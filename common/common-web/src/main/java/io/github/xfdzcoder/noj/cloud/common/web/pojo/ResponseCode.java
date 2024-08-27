@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.common.web.web;
+package io.github.xfdzcoder.noj.cloud.common.web.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonValue;

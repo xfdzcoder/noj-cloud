@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * 题库表(QuestionBank)表服务实现类
  *
  * @author makejava
- * @since 2024-08-25 15:35:01
+ * @since 2024-08-27 21:54:06
  */
 @Service("questionBankService")
 public class QuestionBankServiceImpl extends ServiceImpl<QuestionBankMapper, QuestionBank> implements QuestionBankService {
