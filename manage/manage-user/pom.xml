@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>io.github.xfdzcoder.noj.cloud.manage</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>manage-user</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -23,6 +23,11 @@
         <!--
             Custom
         -->
+        <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+            <artifactId>common-dependencies</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!--
             spring-boot-stater
@@ -40,7 +45,12 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!--
@@ -61,23 +71,16 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-loadbalancer</artifactId>
-        </dependency>
         <!--
             Others
         -->
+
 
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

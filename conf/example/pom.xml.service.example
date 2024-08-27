@@ -27,6 +27,7 @@
         <dependency>
             <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
             <artifactId>common-dependencies</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!--
@@ -84,6 +85,7 @@
     </dependencies>
 
     <build>
+        <!-- 建议父模块放在 pluginManagement 中 -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

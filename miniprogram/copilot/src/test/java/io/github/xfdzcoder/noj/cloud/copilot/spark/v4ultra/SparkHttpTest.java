@@ -3,10 +3,10 @@ package io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.config.SparkProperties;
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.dto.SparkHttpRequest;
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.dto.SparkHttpResponse;
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.service.SparkService;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.config.SparkProperties;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpRequest;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpResponse;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.service.SparkService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,15 +29,15 @@ public class SparkHttpTest {
     @Test
     public void testHttp() {
         SparkHttpResponse response = RestClient.create(sparkProperties.getHttpUrl())
-                .post()
-                .accept(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + sparkProperties.getApiPassword())
-                .body(
+                                               .post()
+                                               .accept(MediaType.APPLICATION_JSON)
+                                               .header(HttpHeaders.AUTHORIZATION, "Bearer " + sparkProperties.getApiPassword())
+                                               .body(
                         SparkHttpRequest.builder(sparkProperties)
-                                .message("来个只有程序员能听懂的笑话")
-                                .build()
+                                        .message("来个只有程序员能听懂的笑话")
+                                        .build()
                 )
-                .exchange((httpRequest, httpResponse) -> Objects.requireNonNull(httpResponse.bodyTo(SparkHttpResponse.class)));
+                                               .exchange((httpRequest, httpResponse) -> Objects.requireNonNull(httpResponse.bodyTo(SparkHttpResponse.class)));
 
         System.out.println(JSONUtil.toJsonPrettyStr(response));
     }

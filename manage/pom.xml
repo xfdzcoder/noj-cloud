@@ -17,6 +17,7 @@
         <module>gateway</module>
         <module>code-sandbox</module>
         <module>manage-question</module>
+        <module>manage-user</module>
     </modules>
 
     <properties>
