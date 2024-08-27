@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.manage.gateway.auth.config;
 
 import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.reactor.filter.SaReactorFilter;
+import cn.dev33.satoken.router.SaHttpMethod;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
@@ -49,6 +50,7 @@ public class SaTokenConfig {
                 // 指定 [认证函数]: 每次请求执行
                 .setAuth(ignore -> {
                     SaRouter.match("/**")
+                            .notMatch(SaHttpMethod.OPTIONS)
 //                            .notMatch("/api/*/user/auth/login")
 //                            .notMatch("/api/*/user/auth/register")
                             .notMatch(authProperties.getExcludePaths())
@@ -58,13 +60,13 @@ public class SaTokenConfig {
                 .setError(e -> {
                     Response<String> res = Response.fail(null, "认证失败，请重新登录");
                     try {
+                        log.error("认证失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(e));
                         return objectMapper.writeValueAsString(res);
                     } catch (JsonProcessingException ex) {
                         JSON json = JSONUtil.parse(res);
                         json.putByPath("code", res.getCode().getCode());
-                        log.error("认证失败返回信息序列化错误，序列化对象：\n{}\n认证异常消息：\n{}\n序列化异常消息：\n{}",
+                        log.error("认证失败返回信息序列化错误，序列化对象：\n{}\n序列化异常消息：\n{}",
                                 json,
-                                ExceptionUtil.stacktraceToString(e),
                                 ExceptionUtil.stacktraceToString(ex)
                         );
                         return json.toString();

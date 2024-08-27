@@ -16,6 +16,9 @@ spring:
           - data-id: redis.yml
             refresh: true
             group: ${nacos.common-group}
+          - data-id: sa-token.yml
+            refresh: true
+            group: ${nacos.manage-group}
       discovery:
         group: ${nacos.manage-group}
         namespace: ${nacos.namespace}
