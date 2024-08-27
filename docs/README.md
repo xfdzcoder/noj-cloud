@@ -12,9 +12,10 @@
 
 ## 端口编排
 
-| service    | port |
-|------------|------|
-| gateway    | 5000 |
-| sandbox    | 5010 |
-| ai-adapter | 5020 |
-| question   | 5030 |
+| service     | port |
+|-------------|------|
+| gateway     | 5000 |
+| sandbox     | 5010 |
+| ai-adapter  | 5020 |
+| question    | 5030 |
+| manage-user | 5040 |
