@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.config;
+package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

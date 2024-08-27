@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.copilot;
+package io.github.xfdzcoder.noj.cloud.miniprogram.copilot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

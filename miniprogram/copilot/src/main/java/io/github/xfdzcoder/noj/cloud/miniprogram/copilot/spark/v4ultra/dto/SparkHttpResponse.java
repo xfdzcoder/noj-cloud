@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.dto;
+package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Opt;

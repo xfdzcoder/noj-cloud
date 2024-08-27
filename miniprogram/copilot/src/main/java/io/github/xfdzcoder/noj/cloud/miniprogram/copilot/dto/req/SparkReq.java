@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.copilot.dto.req;
+package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.dto.req;
 
 import lombok.Data;
 

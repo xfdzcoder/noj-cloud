@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.gateway;
+package io.github.xfdzcoder.noj.cloud.manage.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,12 +1,11 @@
-package io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.exception;
+package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.exception;
 
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.dto.SparkHttpRequest;
-import io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra.dto.SparkHttpResponse;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpRequest;
+import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpResponse;
 import lombok.Getter;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
-
 /**
  * @author xfdzcoder
  */
