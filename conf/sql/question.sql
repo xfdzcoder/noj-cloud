@@ -28,11 +28,11 @@ CREATE TABLE IF NOT EXISTS `question_info`
     `deleted` TINYINT COMMENT '逻辑删除',
 
     `question_bank_id` BIGINT COMMENT '所属题库 ID',
-    `question_type_id` BIGINT COMMENT '题目类型 ID',
 
     `group_name` VARCHAR(32) COMMENT '分组名称',
     `title` VARCHAR(32) COMMENT '一句话名称',
     `description` VARCHAR(1024) COMMENT '题目描述',
+    `question_type` INT COMMENT '题目类型',
     `tags` VARCHAR(255) COMMENT '题目标签',
     `difficulty` INT COMMENT '难度',
     `pass_count` INT COMMENT '通过次数',

@@ -36,9 +36,9 @@ public class QuestionInfo extends BaseEntity implements Serializable {
     /**
      * 题目类型 ID
      */
-    @Schema(description = "题目类型 ID")
-    @TableField("question_type_id")
-    private Long questionTypeId;
+    @Schema(description = "题目类型")
+    @TableField("question_type")
+    private Integer questionType;
     /**
      * 分组名称
      */

@@ -27,8 +27,8 @@ public class QuestionInfoResp {
     @Schema(description = "所属题库 ID")
     private Long questionBankId;
 
-    @Schema(description = "题目类型 ID")
-    private Long questionTypeId;
+    @Schema(description = "题目类型")
+    private Integer questionType;
 
     @Schema(description = "分组名称")
     private String groupName;
