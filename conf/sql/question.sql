@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `answer`
     `option_identifier` INT COMMENT '编号，具体是什么根据题目类型决定。例如：0在选择题中表示 A。在填空题中表示第一个空',
     `content` VARCHAR(1024) COMMENT '答案内容',
     `correct` TINYINT COMMENT '是否是正确答案',
-    `order` INT COMMENT '排序'
+    `sort` INT COMMENT '排序'
 ) COMMENT '答案表';
 
 DROP TABLE IF EXISTS `test_case`;

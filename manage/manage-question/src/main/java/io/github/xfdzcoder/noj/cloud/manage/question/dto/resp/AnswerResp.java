@@ -37,7 +37,7 @@ public class AnswerResp {
     private Boolean correct;
 
     @Schema(description = "排序")
-    private Integer order;
+    private Integer sort;
 
 
     public static IPage<AnswerResp> toResp(IPage<Answer> page) {

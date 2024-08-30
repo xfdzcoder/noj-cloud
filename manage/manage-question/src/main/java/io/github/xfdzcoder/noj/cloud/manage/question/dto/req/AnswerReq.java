@@ -36,7 +36,7 @@ public class AnswerReq implements BaseReq<Answer> {
     private Boolean correct;
 
     @Schema(description = "排序")
-    private Integer order;
+    private Integer sort;
 
     @Override
     public Class<Answer> getEntityClass() {

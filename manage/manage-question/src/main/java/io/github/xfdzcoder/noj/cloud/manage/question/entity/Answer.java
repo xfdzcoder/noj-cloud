@@ -55,8 +55,8 @@ public class Answer extends BaseEntity implements Serializable {
      * 排序
      */
     @Schema(description = "排序")
-    @TableField("order")
-    private Integer order;
+    @TableField("sort")
+    private Integer sort;
 
 }
 
