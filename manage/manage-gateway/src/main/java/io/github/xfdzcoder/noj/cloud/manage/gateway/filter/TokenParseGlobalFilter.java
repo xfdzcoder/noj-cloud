@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.manage.gateway.filter;
 
 import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.context.model.SaRequest;
+import cn.dev33.satoken.reactor.context.SaReactorHolder;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import io.github.xfdzcoder.noj.cloud.manage.common.dependencies.consts.AuthConst;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.server.RequestPath;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -25,10 +28,11 @@ public class TokenParseGlobalFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        SaRequest request = SaHolder.getRequest();
-        log.info("==== {} {}", request.getMethod(), request.getRequestPath());
+        ServerHttpRequest request = exchange.getRequest();
+        RequestPath path = request.getPath();
+        log.info("==== {} {}", request.getMethod(), path);
 
-        if (SaRouter.isMatch(authProperties.getExcludePaths(), SaHolder.getRequest().getRequestPath())
+        if (SaRouter.isMatch(authProperties.getExcludePaths(), path.value())
                 || HttpMethod.OPTIONS == exchange.getRequest().getMethod()) {
             return chain.filter(exchange);
         }

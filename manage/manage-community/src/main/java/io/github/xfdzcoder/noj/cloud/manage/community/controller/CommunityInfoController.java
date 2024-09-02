@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.manage.community.controller;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -23,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 社群表(CommunityInfo)表控制层
  *
@@ -42,6 +45,16 @@ public class CommunityInfoController {
 
     @Autowired
     private RedisOperator redisOperator;
+
+    @GetMapping("change")
+    public Response<CommunityInfoResp> change(@RequestHeader(AuthConst.USER_ID) Long userId) {
+        List<CommunityInfo> infoList = communityInfoService.list(new LambdaQueryWrapper<CommunityInfo>()
+                .eq(CommunityInfo::getManageUserId, userId));
+        CommunityInfo info = CollUtil.get(infoList, 0);
+        CommunityCache cache = new CommunityCache(userId, BeanUtil.copyProperties(info, CommunityCache.CommunityBo.class));
+        redisOperator.opsStr().set(cache);
+        return Response.ok(CommunityInfoResp.toResp(info));
+    }
 
     @GetMapping("change/{communityId}")
     public Response<CommunityInfoResp> change(@RequestHeader(AuthConst.USER_ID) Long userId,

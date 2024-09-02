@@ -31,6 +31,7 @@ public class AuthController {
 
     @GetMapping("/logout")
     public Response<String> logout() {
+        // TODO 2024/9/2 18:35 on dev-xfdzcoder: 删除用户缓存
         StpUtil.logout();
         return Response.ok();
     }

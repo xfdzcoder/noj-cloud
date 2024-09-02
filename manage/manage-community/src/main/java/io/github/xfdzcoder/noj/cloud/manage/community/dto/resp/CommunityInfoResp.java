@@ -38,7 +38,7 @@ public class CommunityInfoResp {
 
 
     public static IPage<CommunityInfoResp> toResp(IPage<CommunityInfo> page) {
-        List<CommunityInfoResp> respList = BeanUtil.copyToList(page.getRecords(), CommunityInfoResp.class);
+        List<CommunityInfoResp> respList = toResp(page.getRecords());
         IPage<CommunityInfoResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());
         respPage.setRecords(respList);
         return respPage;
@@ -46,5 +46,9 @@ public class CommunityInfoResp {
 
     public static CommunityInfoResp toResp(CommunityInfo info) {
         return BeanUtil.copyProperties(info, CommunityInfoResp.class);
+    }
+
+    public static List<CommunityInfoResp> toResp(List<CommunityInfo> infoList) {
+        return BeanUtil.copyToList(infoList, CommunityInfoResp.class);
     }
 }
