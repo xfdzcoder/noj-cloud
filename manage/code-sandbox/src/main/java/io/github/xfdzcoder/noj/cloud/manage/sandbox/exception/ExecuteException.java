@@ -4,7 +4,7 @@ import io.github.xfdzcoder.noj.cloud.manage.sandbox.service.DockerJavaExecutor;
 import lombok.Getter;
 
 /**
- * @author: xfdzcoder
+ * @author xfdzcoder
  */
 
 @Getter

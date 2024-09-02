@@ -3,7 +3,7 @@ package io.github.xfdzcoder.noj.cloud.manage.sandbox.exception;
 import java.io.IOException;
 
 /**
- * @author: xfdzcoder
+ * @author xfdzcoder
  */
 public class CompilerException extends IOException {
 

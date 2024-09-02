@@ -15,6 +15,7 @@
 
     <modules>
         <module>manage-common-dependencies</module>
+        <module>manage-common-cache</module>
     </modules>
 
     <properties>

@@ -34,16 +34,14 @@ public class TokenParseGlobalFilter implements GlobalFilter {
         }
 
         long userId = Long.parseLong(StpUtil.getExtra(AuthConst.USER_ID).toString());
-        long communityId = Long.parseLong(StpUtil.getExtra(AuthConst.COMMUNITY_ID).toString());
 
-        log.info("token 解析成功。当前请求的 \nuserId: {}\ncommunityId: {}", userId, communityId);
+        log.info("token 解析成功。当前请求的 \nuserId: {}\n", userId);
 
         return chain.filter(
                 exchange.mutate().request(
                         requestBuilder ->
                                 requestBuilder.headers(httpHeaders -> {
                                     httpHeaders.add(AuthConst.USER_ID, String.valueOf(userId));
-                                    httpHeaders.add(AuthConst.COMMUNITY_ID, String.valueOf(communityId));
                                 })
                 ).build()
         );

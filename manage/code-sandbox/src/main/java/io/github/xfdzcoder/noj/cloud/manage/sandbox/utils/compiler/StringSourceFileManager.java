@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * 它管理存储在字符串中的源代码
  *
- * @author: xfdzcoder
+ * @author xfdzcoder
  */
 public class StringSourceFileManager extends ForwardingJavaFileManager<StandardJavaFileManager> {
 

@@ -26,6 +26,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.manage.common</groupId>
+            <artifactId>manage-common-cache</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>

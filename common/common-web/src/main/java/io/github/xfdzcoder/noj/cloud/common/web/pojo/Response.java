@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * 统一响应对象
  *
- * @author: Ding
+ * @author Ding
  */
 
 

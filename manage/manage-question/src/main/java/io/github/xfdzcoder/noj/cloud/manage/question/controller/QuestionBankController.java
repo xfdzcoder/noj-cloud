@@ -1,7 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.manage.question.controller;
 
 
-import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
@@ -11,6 +10,8 @@ import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Delete;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Save;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Update;
 import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
+import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.bo.CommunityCache;
+import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.RedisOperator;
 import io.github.xfdzcoder.noj.cloud.manage.common.dependencies.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.manage.question.dto.condition.QuestionBankCondition;
 import io.github.xfdzcoder.noj.cloud.manage.question.dto.req.QuestionBankReq;
@@ -42,9 +43,14 @@ public class QuestionBankController {
     @Autowired
     private QuestionBankService questionBankService;
 
+    @Autowired
+    private RedisOperator redisOperator;
+
     @PostMapping("list")
     public Response<IPage<QuestionBankResp>> list(@Validated(Condition.class) @RequestBody QuestionBankCondition condition,
-                                                  @RequestHeader(AuthConst.COMMUNITY_ID) Long communityId) {
+                                                  @RequestHeader(AuthConst.USER_ID) Long userId) {
+        Long communityId = redisOperator.opsStr().getBean(new CommunityCache(userId)).getId();
+
         Page<QuestionBank> page = questionBankService.page(
                 condition.getPage(),
                 condition.getLambdaQueryWrapper().eq(QuestionBank::getCommunityId, communityId)

@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.manage.question;
+package io.github.xfdzcoder.noj.cloud.manage.community;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class QuestionApplication {
+public class ManageCommunityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(QuestionApplication.class, args);
+        SpringApplication.run(ManageCommunityApplication.class, args);
     }
 
 }

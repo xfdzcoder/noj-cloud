@@ -19,6 +19,7 @@
         <module>manage-question</module>
         <module>manage-user</module>
         <module>manage-common</module>
+        <module>manage-community</module>
     </modules>
 
     <properties>

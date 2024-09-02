@@ -11,7 +11,7 @@ import java.nio.CharBuffer;
 /**
  * 它表示存储在字符串中的源代码
  *
- * @author: xfdzcoder
+ * @author xfdzcoder
  */
 public class StringSourceFileObject extends SimpleJavaFileObject {
 

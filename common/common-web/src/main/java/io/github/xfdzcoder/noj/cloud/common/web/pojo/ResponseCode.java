@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * 定义统一的响应码。
  *
- * @author: Ding
+ * @author Ding
  */
 
 

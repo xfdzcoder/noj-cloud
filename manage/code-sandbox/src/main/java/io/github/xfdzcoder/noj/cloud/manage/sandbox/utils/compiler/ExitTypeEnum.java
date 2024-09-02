@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * 退出类型。
  *
- * @author: xfdzcoder
+ * @author xfdzcoder
  */
 
 @Getter

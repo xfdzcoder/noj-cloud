@@ -12,10 +12,18 @@
 
 ## 端口编排
 
-| service     | port |
-|-------------|------|
-| gateway     | 5000 |
-| sandbox     | 5010 |
-| ai-adapter  | 5020 |
-| question    | 5030 |
-| manage-user | 5041 |
+### manage
+
+| service          | port |
+|------------------|------|
+| manage-gateway   | 5000 |
+| code-sandbox     | 5010 |
+| manage-question  | 5030 |
+| manage-user      | 5041 |
+| manage-community | 5050 |
+
+### miniprogram
+
+| service | port |
+|---------|------|
+| copilot | 5020 |

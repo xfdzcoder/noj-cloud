@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2024-08-27 11:50:00
  */
 @RestController
-@RequestMapping("manageUser")
+@RequestMapping("user")
 public class ManageUserController {
     /**
      * 服务对象

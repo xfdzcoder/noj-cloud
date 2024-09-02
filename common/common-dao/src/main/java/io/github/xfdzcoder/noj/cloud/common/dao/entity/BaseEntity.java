@@ -1,5 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.common.dao.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -30,7 +31,7 @@ public class BaseEntity {
      * 创建时间
      */
     @Schema(description = "创建时间")
-    @TableField("create_date_time")
+    @TableField(value = "create_date_time", fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
 
 
@@ -38,7 +39,7 @@ public class BaseEntity {
      * 更新时间
      */
     @Schema(description = "更新时间")
-    @TableField("update_date_time")
+    @TableField(value = "update_date_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateDateTime;
 
 
@@ -46,7 +47,7 @@ public class BaseEntity {
      * 逻辑删除
      */
     @Schema(description = "逻辑删除")
-    @TableField("deleted")
+    @TableField(value = "deleted", fill = FieldFill.INSERT)
     private Integer deleted;
 
 }

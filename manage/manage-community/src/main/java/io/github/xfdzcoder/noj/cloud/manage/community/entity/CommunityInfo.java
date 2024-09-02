@@ -1,4 +1,6 @@
-package io.github.xfdzcoder.noj.cloud.manage.user.entity;
+package io.github.xfdzcoder.noj.cloud.manage.community.entity;
+
+import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,10 +12,10 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 题圈表(Community)表实体类
+ * 社群表(CommunityInfo)表实体类
  *
  * @author makejava
- * @since 2024-08-27 14:03:09
+ * @since 2024-09-02 10:25:44
  */
 
 @Data
@@ -21,22 +23,22 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("community")
-public class Community extends BaseEntity implements Serializable {
+@TableName("community_info")
+public class CommunityInfo extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -86822736031707186L;
+    private static final long serialVersionUID = -66430254895089054L;
 
     /**
-     * 圈主的管理账号 ID
+     * 群主的管理账号 ID
      */
-    @Schema(description = "圈主的管理账号 ID")
+    @Schema(description = "群主的管理账号 ID")
     @TableField("manage_user_id")
     private Long manageUserId;
     /**
-     * 圈主的C端账号 ID
+     * 群主的C端账号 ID
      */
-    @Schema(description = "圈主的C端账号 ID")
+    @Schema(description = "群主的C端账号 ID")
     @TableField("user_id")
     private Long userId;
     /**
@@ -55,8 +57,8 @@ public class Community extends BaseEntity implements Serializable {
      * 关注人数
      */
     @Schema(description = "关注人数")
-    @TableField("start_count")
-    private Integer startCount;
+    @TableField("star_count")
+    private Integer starCount;
     /**
      * 帖子数量
      */
