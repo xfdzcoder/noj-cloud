@@ -1,10 +1,8 @@
 server:
-  port: 6010
-  servlet:
-    context-path: /copilot
+  port: 6000
 spring:
   application:
-    name: copilot
+    name: gateway
   cloud:
     nacos:
       server-addr: ${nacos.server-addr}:${nacos.port}
@@ -12,14 +10,14 @@ spring:
       password: ${nacos.password}
       config:
         file-extension: ${nacos.file-extension}
-        group: ${nacos.manage-group}
+        group: ${nacos.min-group}
         namespace: ${nacos.namespace}
         shared-configs:
           - data-id: redis.yml
             refresh: true
             group: ${nacos.common-group}
       discovery:
-        group: ${nacos.manage-group}
+        group: ${nacos.min-group}
         namespace: ${nacos.namespace}
   config:
     import: optional:none

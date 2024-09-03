@@ -1,7 +1,7 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.dto;
 
 import cn.hutool.core.util.ObjUtil;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.config.SparkProperties;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.config.SparkProperties;
 import lombok.*;
 
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.controller;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.controller;
 
 
 import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;

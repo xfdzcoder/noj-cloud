@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot;
+package io.github.xfdzcoder.noj.cloud.mini.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,12 +8,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author xfdzcoder
  */
 
-@SpringBootApplication
 @EnableDiscoveryClient
-public class CopilotApplication {
+@SpringBootApplication
+public class MiniGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CopilotApplication.class, args);
+        SpringApplication.run(MiniGatewayApplication.class, args);
     }
 
 }

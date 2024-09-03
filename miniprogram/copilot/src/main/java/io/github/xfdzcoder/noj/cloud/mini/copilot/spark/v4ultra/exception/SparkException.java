@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.exception;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.exception;
 
 /**
  * @author xfdzcoder

@@ -1,11 +1,11 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.service;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.service;
 
 
 import cn.hutool.core.lang.Opt;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.config.SparkProperties;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpRequest;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto.SparkHttpResponse;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.exception.SparkHttpException;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.config.SparkProperties;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.dto.SparkHttpRequest;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.dto.SparkHttpResponse;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.exception.SparkHttpException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;

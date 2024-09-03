@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.dto;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.dto;
 
 import lombok.Data;
 

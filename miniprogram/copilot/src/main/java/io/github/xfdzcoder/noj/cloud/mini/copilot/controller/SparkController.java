@@ -1,9 +1,9 @@
-package io.github.xfdzcoder.noj.cloud.miniprogram.copilot.controller;
+package io.github.xfdzcoder.noj.cloud.mini.copilot.controller;
 
 
 import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.dto.req.SparkReq;
-import io.github.xfdzcoder.noj.cloud.miniprogram.copilot.spark.v4ultra.service.SparkService;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.dto.req.SparkReq;
+import io.github.xfdzcoder.noj.cloud.mini.copilot.spark.v4ultra.service.SparkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
