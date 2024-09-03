@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.manage.community.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Condition;
@@ -41,7 +42,16 @@ public class PostInfoController {
     @Autowired
     private PostContentService postContentService;
 
-    @GetMapping("/content/{postInfoId}")
+    @GetMapping("status/{id}/{status}")
+    public Response<String> disable(@PathVariable("id") Long postId, @PathVariable("status") Integer status) {
+        postInfoService.update(new LambdaUpdateWrapper<PostInfo>()
+                .set(PostInfo::getStatus, status)
+                .eq(PostInfo::getId, postId)
+        );
+        return Response.ok();
+    }
+
+    @GetMapping("content/{postInfoId}")
     public Response<String> getContent(@PathVariable("postInfoId") Long id) {
         PostContent content = postContentService.getOne(new LambdaQueryWrapper<PostContent>()
                 .eq(PostContent::getPostInfoId, id));
