@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.xfdzcoder.noj.cloud.manage</groupId>
-        <artifactId>manage-common</artifactId>
+        <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+        <artifactId>common</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <groupId>io.github.xfdzcoder.noj.cloud.manage.common</groupId>
-    <artifactId>manage-common-cache</artifactId>
+    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+    <artifactId>common-cache</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -21,9 +21,18 @@
     <dependencies>
 
         <dependency>
-            <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
-            <artifactId>common-cache</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
 
         <dependency>

@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.bo;
 
 import cn.hutool.json.JSONUtil;
+import io.github.xfdzcoder.noj.cloud.common.cache.bo.AbstractStringRedisCache;
 import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.consts.RedisKeyConst;
 import lombok.Data;
 

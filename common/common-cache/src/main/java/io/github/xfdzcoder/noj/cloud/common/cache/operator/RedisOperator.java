@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator;
+package io.github.xfdzcoder.noj.cloud.common.cache.operator;
 
 /**
  * @author xfdzcoder

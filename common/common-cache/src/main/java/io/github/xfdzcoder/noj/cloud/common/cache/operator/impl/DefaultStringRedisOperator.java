@@ -1,18 +1,19 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.impl;
+package io.github.xfdzcoder.noj.cloud.common.cache.operator.impl;
+
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.stream.StreamUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ObjectUtil;
-import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.StringRedisOperator;
-import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.bo.StringRedisCache;
+import io.github.xfdzcoder.noj.cloud.common.cache.bo.StringRedisCache;
+import io.github.xfdzcoder.noj.cloud.common.cache.operator.StringRedisOperator;
+import jakarta.annotation.Nullable;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
@@ -121,8 +122,8 @@ public class DefaultStringRedisOperator implements StringRedisOperator {
             return CollUtil.empty(String.class);
         }
         List<String> keyList = StreamUtil.of(cacheList)
-                .map(StringRedisCache::getCacheKey)
-                .collect(Collectors.toList());
+                                         .map(StringRedisCache::getCacheKey)
+                                         .collect(Collectors.toList());
         List<String> valueList = stringRedisTemplate.opsForValue().multiGet(keyList);
         if (CollUtil.isEmpty(valueList)) {
             return CollUtil.empty(String.class);

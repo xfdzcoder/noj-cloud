@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.exception;
+package io.github.xfdzcoder.noj.cloud.common.cache.exception;
 
 
 /**

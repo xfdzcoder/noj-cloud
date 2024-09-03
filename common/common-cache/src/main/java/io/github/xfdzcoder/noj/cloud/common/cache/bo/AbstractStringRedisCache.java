@@ -1,12 +1,10 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.bo;
+package io.github.xfdzcoder.noj.cloud.common.cache.bo;
 
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
-import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.exception.RedisException;
+import io.github.xfdzcoder.noj.cloud.common.cache.exception.RedisException;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.concurrent.TimeUnit;
 

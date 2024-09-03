@@ -1,7 +1,7 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.impl;
+package io.github.xfdzcoder.noj.cloud.common.cache.operator.impl;
 
-import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.RedisOperator;
-import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.operator.StringRedisOperator;
+import io.github.xfdzcoder.noj.cloud.common.cache.operator.RedisOperator;
+import io.github.xfdzcoder.noj.cloud.common.cache.operator.StringRedisOperator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

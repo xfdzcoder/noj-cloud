@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.bo;
+package io.github.xfdzcoder.noj.cloud.common.cache.bo;
 
 import java.util.concurrent.TimeUnit;
 

@@ -17,6 +17,7 @@
         <module>common-dao</module>
         <module>common-dependencies</module>
         <module>common-web</module>
+        <module>common-cache</module>
     </modules>
 
     <properties>
