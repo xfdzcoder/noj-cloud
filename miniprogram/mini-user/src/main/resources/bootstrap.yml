@@ -1,10 +1,10 @@
 server:
-  port: 6010
+  port: 6020
   servlet:
-    context-path: /copilot
+    context-path: /user
 spring:
   application:
-    name: copilot
+    name: user
   cloud:
     nacos:
       server-addr: ${nacos.server-addr}:${nacos.port}
@@ -16,6 +16,9 @@ spring:
         namespace: ${nacos.namespace}
         shared-configs:
           - data-id: redis.yml
+            refresh: true
+            group: ${nacos.common-group}
+          - data-id: mysql.yml
             refresh: true
             group: ${nacos.common-group}
       discovery:

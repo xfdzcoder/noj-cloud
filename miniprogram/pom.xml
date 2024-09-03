@@ -16,6 +16,7 @@
     <modules>
         <module>copilot</module>
         <module>min-gateway</module>
+        <module>mini-user</module>
     </modules>
 
     <properties>
