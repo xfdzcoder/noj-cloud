@@ -21,6 +21,9 @@ public class PostInfoReq implements BaseReq<PostInfo> {
     @Schema(description = "作者")
     private Long author;
 
+    @Schema(description = "所属社群")
+    private Long communityInfoId;
+
     @Schema(description = "标题")
     private String title;
 

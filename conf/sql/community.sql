@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `post_info`
     `deleted` TINYINT COMMENT '逻辑删除',
 
     `author` BIGINT COMMENT '作者',
+    `community_info_id` BIGINT COMMENT '所属社群',
 
     `title` VARCHAR(32) COMMENT '标题',
     `summary` VARCHAR(200) COMMENT '摘要',

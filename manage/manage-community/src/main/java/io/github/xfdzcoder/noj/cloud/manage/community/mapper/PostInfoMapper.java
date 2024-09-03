@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 帖子表(PostInfo)表数据库访问层
  *
  * @author makejava
- * @since 2024-09-02 19:16:54
+ * @since 2024-09-02 19:46:28
  */
 @Mapper
 public interface PostInfoMapper extends BaseMapper<PostInfo> {

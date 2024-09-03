@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.manage.community.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Condition;
@@ -11,7 +12,9 @@ import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
 import io.github.xfdzcoder.noj.cloud.manage.community.dto.condition.PostInfoCondition;
 import io.github.xfdzcoder.noj.cloud.manage.community.dto.req.PostInfoReq;
 import io.github.xfdzcoder.noj.cloud.manage.community.dto.resp.PostInfoResp;
+import io.github.xfdzcoder.noj.cloud.manage.community.entity.PostContent;
 import io.github.xfdzcoder.noj.cloud.manage.community.entity.PostInfo;
+import io.github.xfdzcoder.noj.cloud.manage.community.service.PostContentService;
 import io.github.xfdzcoder.noj.cloud.manage.community.service.PostInfoService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * 帖子表(PostInfo)表控制层
  *
  * @author makejava
- * @since 2024-09-02 19:16:53
+ * @since 2024-09-02 19:46:27
  */
 
 @Validated
@@ -34,6 +37,16 @@ public class PostInfoController {
      */
     @Autowired
     private PostInfoService postInfoService;
+
+    @Autowired
+    private PostContentService postContentService;
+
+    @GetMapping("/content/{postInfoId}")
+    public Response<String> getContent(@PathVariable("postInfoId") Long id) {
+        PostContent content = postContentService.getOne(new LambdaQueryWrapper<PostContent>()
+                .eq(PostContent::getPostInfoId, id));
+        return Response.ok(content.getContent(), "查询成功");
+    }
 
     @PostMapping("list")
     public Response<IPage<PostInfoResp>> list(@Validated(Condition.class) @RequestBody PostInfoCondition condition) {

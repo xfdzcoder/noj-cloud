@@ -15,7 +15,7 @@ import java.io.Serializable;
  * 帖子表(PostInfo)表实体类
  *
  * @author makejava
- * @since 2024-09-02 19:16:53
+ * @since 2024-09-02 19:46:27
  */
 
 @Data
@@ -27,7 +27,7 @@ import java.io.Serializable;
 public class PostInfo extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 247411106648906842L;
+    private static final long serialVersionUID = 866215631389925781L;
 
     /**
      * 作者
@@ -35,6 +35,12 @@ public class PostInfo extends BaseEntity implements Serializable {
     @Schema(description = "作者")
     @TableField("author")
     private Long author;
+    /**
+     * 所属社群
+     */
+    @Schema(description = "所属社群")
+    @TableField("community_info_id")
+    private Long communityInfoId;
     /**
      * 标题
      */

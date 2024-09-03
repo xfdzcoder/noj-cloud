@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * 帖子表(PostInfo)表服务实现类
  *
  * @author makejava
- * @since 2024-09-02 19:16:53
+ * @since 2024-09-02 19:46:27
  */
 @Service("postInfoService")
 public class PostInfoServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> implements PostInfoService {
