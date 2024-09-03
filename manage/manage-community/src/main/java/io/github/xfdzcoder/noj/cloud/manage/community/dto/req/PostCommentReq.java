@@ -1,5 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.manage.community.dto.req;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.github.xfdzcoder.noj.cloud.manage.community.entity.PostComment;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,6 +24,9 @@ public class PostCommentReq implements BaseReq<PostComment> {
 
     @Schema(description = "父评论 ID")
     private Long parentId;
+
+    @Schema(description = "根评论 ID")
+    private Long rootId;
 
     @Schema(description = "评论者")
     private Long author;

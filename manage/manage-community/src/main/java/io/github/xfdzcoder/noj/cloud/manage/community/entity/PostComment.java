@@ -41,6 +41,14 @@ public class PostComment extends BaseEntity implements Serializable {
     @Schema(description = "父评论 ID")
     @TableField("parent_id")
     private Long parentId;
+
+    /**
+     * 根评论 ID
+     */
+    @Schema(description = "根评论 ID")
+    @TableField("root_id")
+    private Long rootId;
+
     /**
      * 评论者
      */

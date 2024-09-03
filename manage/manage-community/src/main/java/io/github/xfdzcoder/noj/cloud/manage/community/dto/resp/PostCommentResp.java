@@ -30,6 +30,9 @@ public class PostCommentResp {
     @Schema(description = "父评论 ID")
     private Long parentId;
 
+    @Schema(description = "根评论 ID")
+    private Long rootId;
+
     @Schema(description = "评论者")
     private Long author;
 
@@ -48,5 +51,9 @@ public class PostCommentResp {
         IPage<PostCommentResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());
         respPage.setRecords(respList);
         return respPage;
+    }
+
+    public static List<PostCommentResp> toResp(List<PostComment> list) {
+        return BeanUtil.copyToList(list, PostCommentResp.class);
     }
 }
