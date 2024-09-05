@@ -1,5 +1,5 @@
 server:
-  port: 6020
+  port: 7020
   servlet:
     context-path: /user
 spring:
@@ -21,6 +21,9 @@ spring:
           - data-id: mysql.yml
             refresh: true
             group: ${nacos.common-group}
+          - data-id: sa-token.yml
+            refresh: true
+            group: ${nacos.mini-group}
       discovery:
         group: ${nacos.mini-group}
         namespace: ${nacos.namespace}

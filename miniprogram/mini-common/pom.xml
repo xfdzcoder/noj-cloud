@@ -4,20 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.xfdzcoder.noj</groupId>
-        <artifactId>noj-cloud</artifactId>
+        <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+        <artifactId>miniprogram</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-    <artifactId>miniprogram</artifactId>
+    <groupId>io.github.xfdzcoder.noj.cloud.mini</groupId>
+    <artifactId>mini-common</artifactId>
     <packaging>pom</packaging>
-
     <modules>
-        <module>copilot</module>
-        <module>mini-gateway</module>
-        <module>mini-user</module>
-        <module>mini-common</module>
+        <module>mini-common-dependencies</module>
     </modules>
 
     <properties>

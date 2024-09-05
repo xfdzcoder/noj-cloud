@@ -24,6 +24,11 @@
         <!--
             Custom
         -->
+        <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.mini.common</groupId>
+            <artifactId>mini-common-dependencies</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!--
             spring-boot-stater
