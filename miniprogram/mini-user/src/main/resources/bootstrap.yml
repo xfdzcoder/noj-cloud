@@ -24,6 +24,9 @@ spring:
           - data-id: sa-token.yml
             refresh: true
             group: ${nacos.mini-group}
+          - data-id: mail.yml
+            refresh: true
+            group: ${nacos.common-group}
       discovery:
         group: ${nacos.mini-group}
         namespace: ${nacos.namespace}

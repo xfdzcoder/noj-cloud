@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import io.github.xfdzcoder.noj.cloud.common.cache.bo.AbstractStringRedisCache;
 import io.github.xfdzcoder.noj.cloud.manage.common.cache.redis.consts.RedisKeyConst;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 /**
  * @author xfdzcoder
@@ -24,12 +25,12 @@ public class CommunityCache extends AbstractStringRedisCache<CommunityCache.Comm
     }
 
     @Override
-    public CommunityBo doGetBean(String value) {
+    public CommunityBo doGetBean(@NonNull String value) {
         return JSONUtil.toBean(value, CommunityBo.class);
     }
 
     @Override
-    public String doGetValue(CommunityBo bean) {
+    public String doGetValue(@NonNull CommunityBo bean) {
         return JSONUtil.toJsonStr(bean);
     }
 

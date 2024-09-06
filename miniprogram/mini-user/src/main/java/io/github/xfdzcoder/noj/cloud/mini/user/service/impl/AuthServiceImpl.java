@@ -98,7 +98,7 @@ public class AuthServiceImpl implements AuthService {
         String openid = loginResp.getOpenid();
 
         UserInfo userInfo = userInfoService.getOne(new LambdaQueryWrapper<UserInfo>()
-                .eq(UserInfo::getOpenid, unionid)
+                .eq(UserInfo::getOpenid, openid)
                 .eq(UserInfo::getUnionid, unionid)
         );
 

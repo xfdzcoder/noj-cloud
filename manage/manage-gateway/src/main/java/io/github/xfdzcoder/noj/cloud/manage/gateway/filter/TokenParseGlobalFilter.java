@@ -1,8 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.manage.gateway.filter;
 
-import cn.dev33.satoken.context.SaHolder;
-import cn.dev33.satoken.context.model.SaRequest;
-import cn.dev33.satoken.reactor.context.SaReactorHolder;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import io.github.xfdzcoder.noj.cloud.manage.common.dependencies.consts.AuthConst;
@@ -37,6 +34,7 @@ public class TokenParseGlobalFilter implements GlobalFilter {
             return chain.filter(exchange);
         }
 
+        // TODO 2024/9/6 8:40 on dev-xfdzcoder: 处理未登录时的异常
         long userId = Long.parseLong(StpUtil.getExtra(AuthConst.USER_ID).toString());
 
         log.info("token 解析成功。当前请求的 \nuserId: {}\n", userId);

@@ -1,5 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.common.cache.bo;
 
+import org.springframework.lang.NonNull;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,18 +32,18 @@ public interface StringRedisCache<V> {
     /**
      * 根据指定的 value 获取 bean 对象
      *
-     * @param value 缓存的值
+     * @param value 缓存的值，不为 null 或 空
      * @return 返回转换后的 bean 对象
      */
-    V doGetBean(String value);
+    V doGetBean(@NonNull String value);
 
     /**
      * 根据指定的 bean 获取 value 对象
      *
-     * @param bean 缓存的 bean
+     * @param bean 缓存的 bean，不为 null
      * @return 返回转换后的 string
      */
-    String doGetValue(V bean);
+    String doGetValue(@NonNull V bean);
 
 
     /**

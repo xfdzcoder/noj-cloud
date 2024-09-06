@@ -25,6 +25,21 @@
         <!--
             Custom
         -->
+        <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.mini.common</groupId>
+            <artifactId>mini-common-dependencies</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+                    <artifactId>common-dao</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>cn.dev33</groupId>
+                    <artifactId>sa-token-spring-boot3-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!--
             spring-boot-stater
@@ -80,6 +95,12 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+        <!-- Sa-Token 权限认证（Reactor响应式集成）, 在线文档：https://sa-token.cc -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+        </dependency>
+
 
     </dependencies>
 
