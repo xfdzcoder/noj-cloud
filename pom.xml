@@ -20,6 +20,7 @@
         <module>common</module>
         <module>manage</module>
         <module>miniprogram</module>
+        <module>universal</module>
     </modules>
 
     <properties>
@@ -33,6 +34,7 @@
         <version.spring-boot>3.2.4</version.spring-boot>
         <version.spring-cloud-alibaba>2023.0.1.0</version.spring-cloud-alibaba>
         <version.spring-cloud>2023.0.1</version.spring-cloud>
+        <version.dubbo>3.3.0-beta.5</version.dubbo>
 
         <version.hutool>5.8.29</version.hutool>
         <version.docker-java>3.4.0</version.docker-java>
@@ -40,6 +42,7 @@
         <version.p6spy>1.9.1</version.p6spy>
         <version.knife4j>4.4.0</version.knife4j>
         <version.sa-token>1.38.0</version.sa-token>
+        <version.minio>8.5.12</version.minio>
     </properties>
 
     <dependencies>
@@ -56,6 +59,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${version.minio}</version>
+            </dependency>
+
             <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
             <dependency>
                 <groupId>cn.dev33</groupId>
@@ -137,6 +146,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${version.spring-boot}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${version.dubbo}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
