@@ -4,22 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.xfdzcoder.noj</groupId>
-        <artifactId>noj-cloud</artifactId>
-        <version>${revision}</version>
+        <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+        <artifactId>common</artifactId>
+        <version>1.0.0</version>
     </parent>
 
-    <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>common-dao</module>
-        <module>common-dependencies</module>
-        <module>common-web</module>
-        <module>common-cache</module>
-        <module>common-file</module>
-    </modules>
+    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+    <artifactId>common-file</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -27,4 +18,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
+    </dependencies>
 </project>

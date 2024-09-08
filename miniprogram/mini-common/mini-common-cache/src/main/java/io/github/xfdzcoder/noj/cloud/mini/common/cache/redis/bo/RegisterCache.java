@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class RegisterCache extends AbstractStringRedisCache<RegisterCache.RegisterBo> {
 
-    public RegisterCache(Long userId, String captcha) {
-        super(String.valueOf(userId), new RegisterBo(captcha));
+    public RegisterCache(String email, String captcha) {
+        super(email, new RegisterBo(captcha));
     }
 
-    public RegisterCache(Long userId) {
-        super(String.valueOf(userId));
+    public RegisterCache(String email) {
+        super(email);
     }
 
     @Override

@@ -8,7 +8,7 @@ public interface RedisKeyConst {
     String BASE = "mini:";
 
     /**
-     * BASE + register: + {@code UserInfo#id}
+     * BASE + register: + <code>email</code>
      */
     String REGISTER = BASE + "register:{}";
 

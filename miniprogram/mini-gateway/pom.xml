@@ -38,6 +38,10 @@
                     <groupId>cn.dev33</groupId>
                     <artifactId>sa-token-spring-boot3-starter</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+                    <artifactId>common-file</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 

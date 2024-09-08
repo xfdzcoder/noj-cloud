@@ -1,11 +1,13 @@
 package io.github.xfdzcoder.noj.cloud.mini.user.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import io.github.xfdzcoder.noj.cloud.mini.user.config.WeChatApiProperties;
+import io.github.xfdzcoder.noj.cloud.mini.user.dto.req.LoginReq;
 import io.github.xfdzcoder.noj.cloud.mini.user.dto.resp.LoginResp;
 import io.github.xfdzcoder.noj.cloud.mini.user.dto.resp.UserInfoResp;
 import io.github.xfdzcoder.noj.cloud.mini.user.dto.resp.WeChatApiLoginResp;
@@ -77,6 +79,20 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public LoginResp login(LoginReq req) {
+        UserInfo userInfo = userInfoService.getOne(new LambdaQueryWrapper<UserInfo>()
+                .eq(UserInfo::getEmail, req.getEmail())
+                .eq(UserInfo::getPassword, req.getPassword()));
+        if (ObjUtil.isNull(userInfo)) {
+            return null;
+        }
+        StpUtil.login(userInfo.getId());
+        String token = StpUtil.getTokenValue();
+
+        return new LoginResp(UserInfoResp.toResp(userInfo), token);
+    }
+
+    /*@Override
     public LoginResp login(String code) {
         WeChatApiLoginResp loginResp = restClient.get()
                                                  .uri((builder) -> builder
@@ -121,5 +137,5 @@ public class AuthServiceImpl implements AuthService {
         String token = StpUtil.getTokenValue();
 
         return new LoginResp(resp, token);
-    }
+    }*/
 }
