@@ -17,7 +17,7 @@ public class MinioConfig {
     private MinioProperties minioProperties;
 
     @Bean
-    @ConditionalOnProperty(MinioProperties.PREFIX)
+    @ConditionalOnProperty(MinioProperties.PREFIX + ".endpoint")
     public MinioClient minioClient() {
         return MinioClient.builder()
                           .endpoint(minioProperties.getEndpoint())

@@ -27,6 +27,9 @@ spring:
           - data-id: mail.yml
             refresh: true
             group: ${nacos.common-group}
+          - data-id: minio.yml
+            refresh: true
+            group: ${nacos.common-group}
       discovery:
         group: ${nacos.mini-group}
         namespace: ${nacos.namespace}
