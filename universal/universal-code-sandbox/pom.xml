@@ -4,18 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.xfdzcoder.noj</groupId>
-        <artifactId>noj-cloud</artifactId>
+        <groupId>io.github.xfdzcoder.noj.cloud</groupId>
+        <artifactId>universal</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <groupId>io.github.xfdzcoder.noj.cloud</groupId>
-    <artifactId>universal</artifactId>
+    <groupId>io.github.xfdzcoder.noj.cloud.universal</groupId>
+    <artifactId>universal-code-sandbox</artifactId>
     <packaging>pom</packaging>
-
     <modules>
-        <module>universal-file</module>
-        <module>universal-code-sandbox</module>
+        <module>universal-code-sandbox-api</module>
+        <module>universal-code-sandbox-docker</module>
     </modules>
 
     <properties>
