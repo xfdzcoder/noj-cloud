@@ -1,0 +1,37 @@
+server:
+  port: 7030
+  servlet:
+    context-path: /community
+spring:
+  application:
+    name: community
+  cloud:
+    nacos:
+      server-addr: ${nacos.server-addr}:${nacos.port}
+      username: ${nacos.username}
+      password: ${nacos.password}
+      config:
+        file-extension: ${nacos.file-extension}
+        group: ${nacos.mini-group}
+        namespace: ${nacos.namespace}
+        shared-configs:
+          - data-id: redis.yml
+            refresh: true
+            group: ${nacos.common-group}
+          - data-id: mysql.yml
+            refresh: true
+            group: ${nacos.common-group}
+          - data-id: sa-token.yml
+            refresh: true
+            group: ${nacos.mini-group}
+          - data-id: mail.yml
+            refresh: true
+            group: ${nacos.common-group}
+          - data-id: minio.yml
+            refresh: true
+            group: ${nacos.common-group}
+      discovery:
+        group: ${nacos.mini-group}
+        namespace: ${nacos.namespace}
+  config:
+    import: optional:none

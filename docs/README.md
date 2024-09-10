@@ -24,8 +24,9 @@
 
 ### miniprogram
 
-| service      | port |
-|--------------|------|
-| mini-gateway | 7000 |
-| copilot      | 7010 |
-| mini-user    | 7020 |
+| service        | port |
+|----------------|------|
+| mini-gateway   | 7000 |
+| copilot        | 7010 |
+| mini-user      | 7020 |
+| mini-community | 7030 |

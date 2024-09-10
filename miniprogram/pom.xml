@@ -18,6 +18,8 @@
         <module>mini-gateway</module>
         <module>mini-user</module>
         <module>mini-common</module>
+        <module>mini-community</module>
+        <module>mini-question</module>
     </modules>
 
     <properties>
