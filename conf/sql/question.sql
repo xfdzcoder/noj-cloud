@@ -76,6 +76,8 @@ CREATE TABLE IF NOT EXISTS `test_case`
 ) COMMENT '测试用例表';
 
 
+
+
 INSERT INTO `question_bank` (`id`, `create_date_time`, `update_date_time`, `deleted`, `community_id`, `identifier`, `name`, `description`, `question_count`, `good_count`, `comment_count`, `study_count`)
 VALUES
     (21, '2024-09-09 18:00:00', '2024-09-09 18:00:00', 0, 1, 'QB001', 'Java Basics', 'A collection of basic Java programming questions.', 50, 40, 10, 100),
