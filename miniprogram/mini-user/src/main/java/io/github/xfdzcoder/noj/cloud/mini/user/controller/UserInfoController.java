@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
-@RequestMapping("user")
+@RequestMapping("info")
 public class UserInfoController {
     /**
      * 服务对象
