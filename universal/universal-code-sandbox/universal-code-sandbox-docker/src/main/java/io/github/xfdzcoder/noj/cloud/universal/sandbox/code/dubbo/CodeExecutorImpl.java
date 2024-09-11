@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
  * @author xfdzcoder
  */
 
-@DubboService
+@DubboService(version = "0.0.1", timeout = 20000)
 public class CodeExecutorImpl implements CodeExecutor {
 
     @Autowired

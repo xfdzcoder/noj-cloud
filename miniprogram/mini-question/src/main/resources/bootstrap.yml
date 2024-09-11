@@ -35,3 +35,13 @@ spring:
         namespace: ${nacos.namespace}
   config:
     import: optional:none
+dubbo:
+  registry:
+    protocol: nacos
+    address: ${nacos.server-addr}:${nacos.port}
+    username: ${nacos.username}
+    password: ${nacos.password}
+    group: "SANDBOX"  # 在Group A中注册
+  protocol:
+    name: dubbo
+    port: 8040

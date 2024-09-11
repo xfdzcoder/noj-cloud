@@ -14,6 +14,7 @@ import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteR
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.entity.TestCase;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.AbstractDockerJavaExecutor;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.utils.compiler.StringSourceFileManager;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.utils.compiler.StringSourceFileObject;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.exception.CompilerException;
@@ -85,7 +86,7 @@ public class ACMDockerJavaService extends AbstractDockerJavaExecutor {
             throw new ExecuteException(
                     new ExecRes(
                             input, "超时错误，详细错误信息:\n" + stderr.toString(StandardCharsets.UTF_8),
-                            0, 0, ExecuteResp.ExitTypeEnum.TIMEOUT
+                            0, 0, ExitTypeEnum.TIMEOUT
                     )
             );
         }
@@ -116,7 +117,7 @@ public class ACMDockerJavaService extends AbstractDockerJavaExecutor {
                 hasError ? errInfo : output,
                 (int) (NumberUtil.parseDouble(execInfo[0]) * 1000D),
                 Integer.parseInt(execInfo[1]),
-                hasError ? ExecuteResp.ExitTypeEnum.RUN_ERROR : ExecuteResp.ExitTypeEnum.NORMAL
+                hasError ? ExitTypeEnum.RUN_ERROR : ExitTypeEnum.NORMAL
         );
         if (hasError) {
             throw new ExecuteException(execRes);

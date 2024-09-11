@@ -1,11 +1,16 @@
 package io.github.xfdzcoder.noj.cloud.sandbox.service;
 
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.UniversalCodeSandboxApplication;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.entity.TestCase;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.DockerJavaExecutor;
 //import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.ExecuteInfoService;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 /**
  * @author xfdzcoder
@@ -17,9 +22,6 @@ public class DockerJavaExecutorTest {
     @Autowired
     private DockerJavaExecutor dockerJavaExecutor;
 
-    @Autowired
-//    private ExecuteInfoService executeInfoService;
-
     @Test
     public void initData() {
         String code = """
@@ -29,10 +31,10 @@ public class DockerJavaExecutorTest {
                         Scanner scanner = new Scanner(System.in);
                         int a = scanner.nextInt();
                         int b = scanner.nextInt();
-                        System.out.println("a + b = " + (a + b));
-                        int c = scanner.nextInt();
-                        int d = scanner.nextInt();
-                        System.out.println("c + d = " + (c + d));
+                        System.out.println(a + b);
+//                        int c = scanner.nextInt();
+//                        int d = scanner.nextInt();
+//                        System.out.println("c + d = " + (c + d));
                     }
                 }
                 """;
@@ -68,10 +70,36 @@ public class DockerJavaExecutorTest {
 
     @Test
     public void testExecute() {
-//        ExecuteReq executeInfo = executeInfoService.getById(1825816388385075201L);
-//        ExecuteResp executeResult = dockerJavaExecutor.execute(executeInfo);
-//
-//        System.out.println(executeResult);
+//        ExecuteReq executeInfo = executeInfoService.getById(1L);
+        ExecuteReq req = new ExecuteReq();
+        req.setId(1L);
+        req.setCodeText("""
+                import java.util.Scanner;
+                public class Main {
+                    public static void main(String[] args) {
+                        Scanner scanner = new Scanner(System.in);
+                        int a = scanner.nextInt();
+                        int b = scanner.nextInt();
+                        System.out.println(a + b);
+                    }
+                }
+                """);
+        req.setSize(288);
+        req.setMemory(134217728);
+        req.setTimeout(2000);
+        req.setLanguageType("Java");
+        req.setRunType(0);
+        req.setQuestionInfoId(1829045838811627522L);
+        TestCase aCase = new TestCase();
+        aCase.setQuestionInfoId(1829045838811627522L);
+        aCase.setInput("1 2\n");
+        aCase.setOutput("3\n");
+
+        ExecuteResp executeResult = dockerJavaExecutor.execute(req, List.of(
+                aCase
+        ));
+
+        System.out.println(executeResult);
     }
 
 }

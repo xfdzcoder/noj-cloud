@@ -48,6 +48,6 @@ public class BaseEntity {
      */
     @Schema(description = "逻辑删除")
     @TableField(value = "deleted", fill = FieldFill.INSERT)
-    private Integer deleted;
+    private Boolean deleted;
 
 }

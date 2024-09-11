@@ -27,6 +27,12 @@
             <groupId>io.github.xfdzcoder.noj.cloud.manage.common</groupId>
             <artifactId>manage-common-dependencies</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.xfdzcoder.noj.cloud.common</groupId>
+                    <artifactId>common-file</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

@@ -3,6 +3,8 @@ package io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.entity.TestCase;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public interface DockerJavaExecutor {
             Object output,
             int time,
             int memory,
-            ExecuteResp.ExitTypeEnum type
+            ExitTypeEnum type
     ) {
     }
 }

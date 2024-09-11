@@ -13,6 +13,7 @@ import io.github.xfdzcoder.noj.cloud.mini.question.service.ExecuteResultService;
 import io.github.xfdzcoder.noj.cloud.mini.question.service.QuestionInfoService;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.CodeExecutor;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
     @Autowired
     private QuestionInfoService questionInfoService;
 
-    @DubboReference
+    @DubboReference(version = "0.0.1")
     private CodeExecutor codeExecutor;
 
     @Override
@@ -46,6 +47,8 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
         }
 
         final ExecuteInfo executeInfo = new ExecuteInfo();
+        // TODO 2024/9/10 19:39 on dev-xfdzcoder: 测试使用
+        executeInfo.setId(1L);
         executeInfo.setCodeText(req.getCode());
         executeInfo.setQuestionInfoId(req.getQuestionInfoId());
         executeInfo.setMemory(questionInfo.getMemory());
@@ -58,18 +61,19 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
 
         final Long executeInfoId = executeInfo.getId();
         codeExecutor.executeAsync(BeanUtil.copyProperties(executeInfo, ExecuteReq.class))
-                    .whenComplete((result, exception) -> {
-                    if (ObjUtil.isNotNull(exception)) {
-                        ExecuteResult executeResult = BeanUtil.copyProperties(result, ExecuteResult.class);
-                        executeResult.setExecuteInfoId(executeInfoId);
-                        executeResult.setExitType(result.getExitType().getCode());
-                        executeResultService.save(executeResult);
-                    } else {
-                        log.error("代码沙箱调用失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(exception));
+                    .whenComplete((result, ex) -> {
+                        if (ObjUtil.isNull(ex) && ExitTypeEnum.NORMAL.equals(result.getExitType())) {
+                            ExecuteResult executeResult = BeanUtil.copyProperties(result, ExecuteResult.class);
+                            executeResult.setExecuteInfoId(executeInfoId);
+                            executeResult.setExitType(result.getExitType().getCode());
+                            executeResultService.save(executeResult);
+                        }
+                    }).exceptionally((ex) -> {
+                        log.error("代码沙箱调用失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(ex));
                         boolean removed = executeInfoService.removeById(executeInfoId);
                         log.error("本次执行信息 {}，被删除的执行信息 ID: {}", removed ? "已删除" : "删除失败", executeInfoId);
-                    }
-                });
+                        return null;
+                    });
         return String.valueOf(executeInfoId);
     }
 }

@@ -3,6 +3,7 @@ package io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.StrFormatter;
+import cn.hutool.core.util.ObjUtil;
 import com.github.dockerjava.api.DockerClient;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.config.DockerJavaProperties;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
@@ -10,6 +11,7 @@ import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.entity.TestCase;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.exception.CompilerException;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.exception.ExecuteException;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,7 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
             try {
                 classDirFile = compileCode(executeReq.getCodeText(), classDir);
             } catch (CompilerException e) {
-                result.setExitType(ExecuteResp.ExitTypeEnum.COMPILE_ERROR);
+                result.setExitType(ExitTypeEnum.COMPILE_ERROR);
                 result.setThrowableOutput(e.getMessage());
                 return result;
             }
@@ -76,7 +78,7 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
                     result.setInput(testCase.getInput());
                     result.setOutput(execRes.output());
                     result.setExceptOutput(testCase.getOutput());
-                    result.setExitType(ExecuteResp.ExitTypeEnum.RUN_ERROR);
+                    result.setExitType(ExitTypeEnum.RUN_ERROR);
                     break;
                 }
             }
@@ -90,6 +92,9 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
             result.setAvgMemory(totalMemoryUsed / totalTestCase);
             result.setPassedCaseCount(passedCaseCount);
             result.setTotalCaseCount(totalTestCase);
+            if (result.getSucceed() && ObjUtil.isNull(result.getExitType())) {
+                result.setExitType(ExitTypeEnum.NORMAL);
+            }
 
             return result;
         } catch (Exception e) {
@@ -97,7 +102,7 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
                 log.error("容器内部异常: \n{}", execException.getExecRes().output());
             }
             log.error(ExceptionUtil.stacktraceToString(e));
-            result.setExitType(ExecuteResp.ExitTypeEnum.RUN_ERROR);
+            result.setExitType(ExitTypeEnum.RUN_ERROR);
             return result;
 
         } finally {
