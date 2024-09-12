@@ -1,5 +1,6 @@
 package io.github.xfdzcoder.noj.cloud.mini.question.dto.req;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,6 +18,12 @@ public class ExecuteResultReq implements BaseReq<ExecuteResult> {
     @Null(groups = Save.class, message = "ID必须为空")
     @NotNull(groups = Update.class, message = "ID 不能为空")
     private Long id;
+
+    @Schema(description = "用户 ID")
+    private Long userId;
+
+    @Schema(description = "对应题目 ID")
+    private Long questionInfoId;
 
     @Schema(description = "执行信息 ID")
     private Long executeInfoId;

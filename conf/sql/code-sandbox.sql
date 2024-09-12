@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `execute_info`
     `memory` INT COMMENT '内存限制，单位 Byte'
 ) COMMENT '执行信息表';
 
+DROP TABLE IF EXISTS `execute_result`;
 CREATE TABLE IF NOT EXISTS `execute_result`
 (
     `id` BIGINT PRIMARY KEY COMMENT '主键 ID，通过雪花算法生成',
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS `execute_result`
     `update_date_time` DATETIME COMMENT '更新时间',
     `deleted` TINYINT COMMENT '逻辑删除',
 
+    `user_id` BIGINT COMMENT '用户 ID',
+    `question_info_id` BIGINT COMMENT '对应题目 ID',
     `execute_info_id` BIGINT COMMENT '执行信息 ID',
 
     `succeed` TINYINT COMMENT '是否执行成功',

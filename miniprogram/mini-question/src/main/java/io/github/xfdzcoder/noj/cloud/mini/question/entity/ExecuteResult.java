@@ -30,6 +30,20 @@ public class ExecuteResult extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -55204706498822727L;
 
     /**
+     * 用户 ID
+     */
+    @Schema(description = "用户 ID")
+    @TableField("user_id")
+    private Long userId;
+
+    /**
+     * 对应题目 ID
+     */
+    @Schema(description = "对应题目 ID")
+    @TableField("question_info_id")
+    private Long questionInfoId;
+
+    /**
      * 执行信息 ID
      */
     @Schema(description = "执行信息 ID")

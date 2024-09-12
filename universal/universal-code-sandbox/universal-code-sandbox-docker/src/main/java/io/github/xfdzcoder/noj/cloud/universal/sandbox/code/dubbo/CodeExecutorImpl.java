@@ -7,11 +7,15 @@ import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.DockerJavaEx
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.TestCaseService;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
+import jakarta.annotation.PostConstruct;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xfdzcoder
@@ -26,9 +30,24 @@ public class CodeExecutorImpl implements CodeExecutor {
     @Autowired
     private TestCaseService testCaseService;
 
+    private ThreadPoolExecutor executor;
+
+    @PostConstruct
+    public void init() {
+        executor = new ThreadPoolExecutor(
+                8,
+                16,
+                30,
+                TimeUnit.MINUTES,
+                new LinkedBlockingQueue<>(),
+                new DubboServiceThreadFactory("CodeExecuteImpl"),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
+    }
+
     @Override
     public CompletableFuture<ExecuteResp> executeAsync(final ExecuteReq executeReq) {
-        return CompletableFuture.supplyAsync(() -> executeSync(executeReq));
+        return CompletableFuture.supplyAsync(() -> executeSync(executeReq), executor);
     }
 
     @Override
@@ -38,4 +57,16 @@ public class CodeExecutorImpl implements CodeExecutor {
 
         return dockerJavaExecutor.execute(executeReq, caseList);
     }
+
+
 }
+
+/*
+import io.netty.util.concurrent.DefaultThreadFactory;
+import jakarta.annotation.PostConstruct;
+
+
+    private ThreadPoolExecutor executor;
+
+
+ */

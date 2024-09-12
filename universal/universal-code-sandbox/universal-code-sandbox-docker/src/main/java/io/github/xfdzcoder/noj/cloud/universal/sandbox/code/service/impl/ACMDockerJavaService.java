@@ -98,7 +98,7 @@ public class ACMDockerJavaService extends AbstractDockerJavaExecutor {
         }
 
 
-        int index = errOutput.lastIndexOf("\r\n");
+        int index = Math.max(errOutput.lastIndexOf("\n"), errOutput.lastIndexOf("\r\n"));
         String errInfo;
         String[] execInfo;
         if (index < 0) {
@@ -106,7 +106,7 @@ public class ACMDockerJavaService extends AbstractDockerJavaExecutor {
             execInfo = errOutput.split(" ");
         } else {
             errInfo = StrUtil.sub(errOutput, 0, index);
-            execInfo = StrUtil.subSuf(errOutput, index + 2).split(" ");
+            execInfo = StrUtil.subSuf(errOutput, index).trim().split(" ");
         }
 
 

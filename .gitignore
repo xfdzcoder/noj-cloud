@@ -1,4 +1,4 @@
-conf/config-dev.yml
+conf/config-*.yml
 .idea
 target
 logs

@@ -9,6 +9,7 @@ import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Delete;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Save;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Update;
 import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
+import io.github.xfdzcoder.noj.cloud.mini.common.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.condition.ExecuteResultCondition;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.req.ExecuteResultReq;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.resp.ExecuteResultResp;
@@ -18,6 +19,8 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 运行结果表(ExecuteResp)表控制层
@@ -36,10 +39,21 @@ public class ExecuteResultController {
     @Autowired
     private ExecuteResultService executeResultService;
 
+    @GetMapping("recently")
+    public Response<List<ExecuteResultResp>> recently(@RequestHeader(AuthConst.USER_ID) Long userId) {
+        Page<ExecuteResult> page = executeResultService.page(Page.of(1, 5), new LambdaQueryWrapper<ExecuteResult>()
+                .eq(ExecuteResult::getUserId, userId)
+        );
+        return Response.ok(ExecuteResultResp.toResp(page.getRecords()));
+    }
+
     @GetMapping("check/{infoId}")
-    public Response<ExecuteResultResp> getByInfoId(@PathVariable("infoId") Long infoId) {
+    public Response<ExecuteResultResp> getByInfoId(@PathVariable("infoId") Long infoId,
+                                                   @RequestHeader(AuthConst.USER_ID) Long userId) {
         ExecuteResult executeResult = executeResultService.getOne(new LambdaQueryWrapper<ExecuteResult>()
-                .eq(ExecuteResult::getExecuteInfoId, infoId));
+                .eq(ExecuteResult::getExecuteInfoId, infoId)
+                .eq(ExecuteResult::getUserId, userId)
+        );
         return Response.ok(ExecuteResultResp.toResp(executeResult));
     }
 
@@ -50,12 +64,14 @@ public class ExecuteResultController {
     }
 
     @PostMapping
+    @Deprecated
     public Response<String> save(@Validated(Save.class) @RequestBody ExecuteResultReq req) {
         executeResultService.save(req.toEntity());
         return Response.ok();
     }
 
     @PutMapping
+    @Deprecated
     public Response<String> edit(@Validated(Update.class) @RequestBody ExecuteResultReq req) {
         executeResultService.updateById(req.toEntity());
         return Response.ok();

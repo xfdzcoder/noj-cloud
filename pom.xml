@@ -43,6 +43,8 @@
         <version.knife4j>4.4.0</version.knife4j>
         <version.sa-token>1.38.0</version.sa-token>
         <version.minio>8.5.12</version.minio>
+
+        <version.maven-conpiler>3.13.0</version.maven-conpiler>
     </properties>
 
     <dependencies>
@@ -161,6 +163,18 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven-conpiler}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>

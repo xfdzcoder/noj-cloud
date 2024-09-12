@@ -4,6 +4,7 @@ import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.util.ObjUtil;
+import cn.hutool.json.JSONUtil;
 import com.github.dockerjava.api.DockerClient;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.config.DockerJavaProperties;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
@@ -99,10 +100,15 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
             return result;
         } catch (Exception e) {
             if (e instanceof ExecuteException execException) {
-                log.error("容器内部异常: \n{}", execException.getExecRes().output());
+                ExecRes execRes = execException.getExecRes();
+                result.setInput(execRes.input());
+                result.setOutput(execRes.output());
+                result.setAvgTime(execRes.time());
+                result.setAvgMemory(execRes.memory());
+                result.setExitType(execRes.type());
+                log.error("容器内部异常: \n{}", JSONUtil.toJsonPrettyStr(result));
             }
             log.error(ExceptionUtil.stacktraceToString(e));
-            result.setExitType(ExitTypeEnum.RUN_ERROR);
             return result;
 
         } finally {

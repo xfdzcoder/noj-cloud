@@ -6,6 +6,8 @@ spring:
   application:
     name: sandbox
   cloud:
+    inetutils:
+      preferred-networks: 192.168
     nacos:
       server-addr: ${nacos.server-addr}:${nacos.port}
       username: ${nacos.username}
@@ -24,6 +26,7 @@ spring:
       discovery:
         group: ${nacos.common-group}
         namespace: ${nacos.namespace}
+        ip: ${network.ip}
   config:
     import: optional:none
 dubbo:
@@ -36,3 +39,4 @@ dubbo:
   protocol:
     name: dubbo
     port: 11000
+    host: ${network.ip}

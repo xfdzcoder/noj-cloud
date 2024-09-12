@@ -33,5 +33,6 @@ spring:
       discovery:
         group: ${nacos.mini-group}
         namespace: ${nacos.namespace}
+        ip: ${network.ip}
   config:
     import: optional:none

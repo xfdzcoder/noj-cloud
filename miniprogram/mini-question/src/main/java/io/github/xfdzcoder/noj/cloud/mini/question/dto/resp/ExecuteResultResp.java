@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.mini.question.dto.resp;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
@@ -23,6 +24,12 @@ import java.util.List;
 public class ExecuteResultResp {
 
     private Long id;
+
+    @Schema(description = "用户 ID")
+    private Long userId;
+
+    @Schema(description = "对应题目 ID")
+    private Long questionInfoId;
 
     @Schema(description = "执行信息 ID")
     private Long executeInfoId;
@@ -67,5 +74,9 @@ public class ExecuteResultResp {
 
     public static ExecuteResultResp toResp(ExecuteResult executeResult) {
         return BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+    }
+
+    public static List<ExecuteResultResp> toResp(List<ExecuteResult> records) {
+        return BeanUtil.copyToList(records, ExecuteResultResp.class);
     }
 }

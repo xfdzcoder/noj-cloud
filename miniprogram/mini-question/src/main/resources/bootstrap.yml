@@ -33,6 +33,7 @@ spring:
       discovery:
         group: ${nacos.mini-group}
         namespace: ${nacos.namespace}
+        ip: ${network.ip}
   config:
     import: optional:none
 dubbo:
@@ -45,3 +46,4 @@ dubbo:
   protocol:
     name: dubbo
     port: 8040
+    host: ${network.ip}

@@ -2,7 +2,9 @@ package io.github.xfdzcoder.noj.cloud.mini.question.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.exceptions.ExceptionUtil;
+import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.util.ObjUtil;
+import cn.hutool.json.JSONUtil;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.req.CodeExecuteReq;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteInfo;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
@@ -14,6 +16,7 @@ import io.github.xfdzcoder.noj.cloud.mini.question.service.QuestionInfoService;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.CodeExecutor;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.exception.CodeSandboxException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +50,6 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
         }
 
         final ExecuteInfo executeInfo = new ExecuteInfo();
-        // TODO 2024/9/10 19:39 on dev-xfdzcoder: 测试使用
-        executeInfo.setId(1L);
         executeInfo.setCodeText(req.getCode());
         executeInfo.setQuestionInfoId(req.getQuestionInfoId());
         executeInfo.setMemory(questionInfo.getMemory());
@@ -66,8 +67,12 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                             ExecuteResult executeResult = BeanUtil.copyProperties(result, ExecuteResult.class);
                             executeResult.setExecuteInfoId(executeInfoId);
                             executeResult.setExitType(result.getExitType().getCode());
+                            executeResult.setUserId(userId);
+                            executeResult.setQuestionInfoId(questionInfo.getId());
                             executeResultService.save(executeResult);
+                            return;
                         }
+                        throw new CodeSandboxException(StrFormatter.format("沙箱执行异常\n响应信息：{}\n", JSONUtil.toJsonPrettyStr(result)), ex);
                     }).exceptionally((ex) -> {
                         log.error("代码沙箱调用失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(ex));
                         boolean removed = executeInfoService.removeById(executeInfoId);
