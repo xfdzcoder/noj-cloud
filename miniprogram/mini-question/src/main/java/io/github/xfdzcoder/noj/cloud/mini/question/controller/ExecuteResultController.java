@@ -13,14 +13,19 @@ import io.github.xfdzcoder.noj.cloud.mini.common.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.condition.ExecuteResultCondition;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.req.ExecuteResultReq;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.resp.ExecuteResultResp;
+import io.github.xfdzcoder.noj.cloud.mini.question.dto.resp.Heatmap;
+import io.github.xfdzcoder.noj.cloud.mini.question.dto.resp.QuestionInfoResp;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
+import io.github.xfdzcoder.noj.cloud.mini.question.entity.QuestionInfo;
 import io.github.xfdzcoder.noj.cloud.mini.question.service.ExecuteResultService;
+import io.github.xfdzcoder.noj.cloud.mini.question.service.QuestionInfoService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 运行结果表(ExecuteResp)表控制层
@@ -39,12 +44,23 @@ public class ExecuteResultController {
     @Autowired
     private ExecuteResultService executeResultService;
 
+    @Autowired
+    private QuestionInfoService questionInfoService;
+
+    @GetMapping("heatmap")
+    public Response<List<Heatmap>> heatmap(@RequestHeader(AuthConst.USER_ID) Long userId) {
+        return Response.ok(executeResultService.heatmap(userId));
+    }
+
     @GetMapping("recently")
     public Response<List<ExecuteResultResp>> recently(@RequestHeader(AuthConst.USER_ID) Long userId) {
         Page<ExecuteResult> page = executeResultService.page(Page.of(1, 5), new LambdaQueryWrapper<ExecuteResult>()
                 .eq(ExecuteResult::getUserId, userId)
         );
-        return Response.ok(ExecuteResultResp.toResp(page.getRecords()));
+        List<Long> questionInfoIdList = page.getRecords().stream().map(ExecuteResult::getQuestionInfoId).toList();
+        Map<Long, QuestionInfoResp> questionInfoId2objMap = questionInfoService.listRespByIds(questionInfoIdList);
+
+        return Response.ok(ExecuteResultResp.toResp(page.getRecords(), questionInfoId2objMap));
     }
 
     @GetMapping("check/{infoId}")
@@ -54,13 +70,16 @@ public class ExecuteResultController {
                 .eq(ExecuteResult::getExecuteInfoId, infoId)
                 .eq(ExecuteResult::getUserId, userId)
         );
-        return Response.ok(ExecuteResultResp.toResp(executeResult));
+        QuestionInfo questionInfo = questionInfoService.getById(executeResult.getQuestionInfoId());
+        return Response.ok(ExecuteResultResp.toResp(executeResult, QuestionInfoResp.toResp(questionInfo)));
     }
 
     @PostMapping("list")
     public Response<IPage<ExecuteResultResp>> list(@Validated(Condition.class) @RequestBody ExecuteResultCondition condition) {
         Page<ExecuteResult> page = executeResultService.page(condition.getPage(), condition.getLambdaQueryWrapper());
-        return Response.ok(ExecuteResultResp.toResp(page));
+        List<Long> questionInfoIdList = page.getRecords().stream().map(ExecuteResult::getQuestionInfoId).toList();
+        Map<Long, QuestionInfoResp> questionInfoId2objMap = questionInfoService.listRespByIds(questionInfoIdList);
+        return Response.ok(ExecuteResultResp.toResp(page, questionInfoId2objMap));
     }
 
     @PostMapping

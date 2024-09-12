@@ -70,4 +70,8 @@ public class QuestionInfoResp {
         respPage.setRecords(respList);
         return respPage;
     }
+
+    public static QuestionInfoResp toResp(QuestionInfo questionInfo) {
+        return BeanUtil.copyProperties(questionInfo, QuestionInfoResp.class);
+    }
 }

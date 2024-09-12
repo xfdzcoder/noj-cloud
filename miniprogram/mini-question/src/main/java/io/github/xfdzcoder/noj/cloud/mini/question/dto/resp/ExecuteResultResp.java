@@ -1,10 +1,10 @@
 package io.github.xfdzcoder.noj.cloud.mini.question.dto.resp;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
+import io.github.xfdzcoder.noj.cloud.mini.question.entity.QuestionInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xfdzcoder
@@ -30,6 +31,9 @@ public class ExecuteResultResp {
 
     @Schema(description = "对应题目 ID")
     private Long questionInfoId;
+
+    @Schema(description = "对应题目")
+    private QuestionInfoResp questionInfo;
 
     @Schema(description = "执行信息 ID")
     private Long executeInfoId;
@@ -65,18 +69,32 @@ public class ExecuteResultResp {
     private Integer exitType;
 
 
-    public static IPage<ExecuteResultResp> toResp(IPage<ExecuteResult> page) {
-        List<ExecuteResultResp> respList = BeanUtil.copyToList(page.getRecords(), ExecuteResultResp.class);
+    public static IPage<ExecuteResultResp> toResp(IPage<ExecuteResult> page, Map<Long, QuestionInfoResp> questionInfoRespMap) {
+        List<ExecuteResultResp> respList = page.getRecords().stream()
+                                           .map(result -> {
+                                               ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
+                                               resp.setQuestionInfo(questionInfoRespMap.get(resp.getQuestionInfoId()));
+                                               return resp;
+                                           })
+                                           .toList();
         IPage<ExecuteResultResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());
         respPage.setRecords(respList);
         return respPage;
     }
 
-    public static ExecuteResultResp toResp(ExecuteResult executeResult) {
-        return BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+    public static ExecuteResultResp toResp(ExecuteResult executeResult, QuestionInfoResp questionInfo) {
+        ExecuteResultResp resp = BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+        resp.setQuestionInfo(questionInfo);
+        return resp;
     }
 
-    public static List<ExecuteResultResp> toResp(List<ExecuteResult> records) {
-        return BeanUtil.copyToList(records, ExecuteResultResp.class);
+    public static List<ExecuteResultResp> toResp(List<ExecuteResult> records, Map<Long, QuestionInfoResp> questionInfoId2objMap) {
+        return records.stream()
+                .map(result -> {
+                    ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
+                    resp.setQuestionInfo(questionInfoId2objMap.get(resp.getQuestionInfoId()));
+                    return resp;
+                })
+                .toList();
     }
 }
