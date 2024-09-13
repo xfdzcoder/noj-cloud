@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.QuestionInfo;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -66,7 +67,7 @@ public class ExecuteResultResp {
     private String throwableOutput;
 
     @Schema(description = "退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；")
-    private Integer exitType;
+    private String exitType;
 
 
     public static IPage<ExecuteResultResp> toResp(IPage<ExecuteResult> page, Map<Long, QuestionInfoResp> questionInfoRespMap) {
@@ -74,6 +75,7 @@ public class ExecuteResultResp {
                                            .map(result -> {
                                                ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
                                                resp.setQuestionInfo(questionInfoRespMap.get(resp.getQuestionInfoId()));
+                                               resp.setExitType(ExitTypeEnum.getMessage(result.getExitType()));
                                                return resp;
                                            })
                                            .toList();
@@ -85,6 +87,7 @@ public class ExecuteResultResp {
     public static ExecuteResultResp toResp(ExecuteResult executeResult, QuestionInfoResp questionInfo) {
         ExecuteResultResp resp = BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
         resp.setQuestionInfo(questionInfo);
+        resp.setExitType(ExitTypeEnum.getMessage(executeResult.getExitType()));
         return resp;
     }
 
@@ -93,8 +96,15 @@ public class ExecuteResultResp {
                 .map(result -> {
                     ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
                     resp.setQuestionInfo(questionInfoId2objMap.get(resp.getQuestionInfoId()));
+                    resp.setExitType(ExitTypeEnum.getMessage(result.getExitType()));
                     return resp;
                 })
                 .toList();
+    }
+
+    public static ExecuteResultResp toResp(ExecuteResult executeResult) {
+        ExecuteResultResp resp = BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+        resp.setExitType(ExitTypeEnum.getMessage(executeResult.getExitType()));
+        return resp;
     }
 }

@@ -6,6 +6,7 @@ import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.json.JSONUtil;
 import io.github.xfdzcoder.noj.cloud.mini.question.dto.req.CodeExecuteReq;
+import io.github.xfdzcoder.noj.cloud.mini.question.dto.resp.ExecuteInfoResp;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteInfo;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.QuestionInfo;
@@ -43,7 +44,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
     private CodeExecutor codeExecutor;
 
     @Override
-    public String execute(Long userId, CodeExecuteReq req, long bodyLength) {
+    public ExecuteInfoResp execute(Long userId, CodeExecuteReq req, long bodyLength) {
         QuestionInfo questionInfo = questionInfoService.getById(req.getQuestionInfoId());
         if (ObjUtil.isNull(questionInfo)) {
             return null;
@@ -79,6 +80,6 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                         log.error("本次执行信息 {}，被删除的执行信息 ID: {}", removed ? "已删除" : "删除失败", executeInfoId);
                         return null;
                     });
-        return String.valueOf(executeInfoId);
+        return ExecuteInfoResp.toResp(executeInfo);
     }
 }

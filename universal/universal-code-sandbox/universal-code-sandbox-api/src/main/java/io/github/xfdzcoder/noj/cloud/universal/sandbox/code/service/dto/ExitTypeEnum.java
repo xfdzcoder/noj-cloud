@@ -26,4 +26,14 @@ public enum ExitTypeEnum {
         this.message = message;
     }
 
+    public static String getMessage(Integer code) {
+        return switch (code) {
+            case -1 -> NO_PERMISSION.getMessage();
+            case 0 -> NORMAL.getMessage();
+            case 1 -> COMPILE_ERROR.getMessage();
+            case 3 -> TIMEOUT.getMessage();
+            case 4 -> MEMORY_OVERFLOW.getMessage();
+            case null, default -> RUN_ERROR.getMessage();
+        };
+    }
 }

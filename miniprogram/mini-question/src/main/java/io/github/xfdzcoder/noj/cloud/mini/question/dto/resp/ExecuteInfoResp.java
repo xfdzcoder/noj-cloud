@@ -55,4 +55,8 @@ public class ExecuteInfoResp {
         respPage.setRecords(respList);
         return respPage;
     }
+
+    public static ExecuteInfoResp toResp(ExecuteInfo executeInfo) {
+        return BeanUtil.copyProperties(executeInfo, ExecuteInfoResp.class);
+    }
 }

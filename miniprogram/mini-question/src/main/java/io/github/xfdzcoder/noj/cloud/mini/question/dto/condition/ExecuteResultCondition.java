@@ -17,15 +17,11 @@ import lombok.Data;
 @EqualsAndHashCode(callSuper = true)
 public class ExecuteResultCondition extends BaseCondition<ExecuteResult> {
 
-    @NotNull(groups = BaseReq.Condition.class, message = "缺少用户信息")
-    private Long userId;
-
     private Long questionInfoId;
 
     @Override
     public LambdaQueryWrapper<ExecuteResult> getLambdaQueryWrapper() {
         return super.getLambdaQueryWrapper()
-                .eq(ExecuteResult::getUserId, userId)
                 .eq(ObjUtil.isNotNull(questionInfoId), ExecuteResult::getQuestionInfoId, questionInfoId)
                 .orderByDesc(ExecuteResult::getCreateDateTime);
     }
