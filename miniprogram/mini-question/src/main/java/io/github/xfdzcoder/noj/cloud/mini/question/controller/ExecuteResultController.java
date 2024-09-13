@@ -57,12 +57,13 @@ public class ExecuteResultController {
     private ExecuteInfoService executeInfoService;
 
     @GetMapping("{id}")
-    public Response<ExecuteResultResp> getById(@PathVariable("id") Long id) {
+    public Response<ExecuteDetailResp> getById(@PathVariable("id") Long id) {
         ExecuteResult executeResult = executeResultService.getById(id);
         if (ObjUtil.isNull(executeResult)) {
             return Response.fail("提交记录不存在");
         }
-        return Response.ok(ExecuteResultResp.toResp(executeResult));
+        ExecuteInfo executeInfo = executeInfoService.getById(executeResult.getExecuteInfoId());
+        return Response.ok(new ExecuteDetailResp(executeResult, executeInfo));
     }
 
     @GetMapping("heatmap")

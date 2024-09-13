@@ -84,19 +84,19 @@ public class ExecuteResult extends BaseEntity implements Serializable {
      */
     @Schema(description = "输入，仅在错误时有值")
     @TableField("input")
-    private Object input;
+    private String input;
     /**
      * 输出，仅在错误时有值
      */
     @Schema(description = "输出，仅在错误时有值")
     @TableField("output")
-    private Object output;
+    private String output;
     /**
      * 期望输出，仅在错误时有值
      */
     @Schema(description = "期望输出，仅在错误时有值")
     @TableField("except_output")
-    private Object exceptOutput;
+    private String exceptOutput;
     /**
      * 异常输出，仅在错误时有值
      */

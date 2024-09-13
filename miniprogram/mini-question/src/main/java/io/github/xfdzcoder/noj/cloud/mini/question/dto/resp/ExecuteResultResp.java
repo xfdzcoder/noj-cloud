@@ -55,13 +55,13 @@ public class ExecuteResultResp {
     private Integer totalCaseCount;
 
     @Schema(description = "输入，仅在错误时有值")
-    private Object input;
+    private String input;
 
     @Schema(description = "输出，仅在错误时有值")
-    private Object output;
+    private String output;
 
     @Schema(description = "期望输出，仅在错误时有值")
-    private Object exceptOutput;
+    private String exceptOutput;
 
     @Schema(description = "异常输出，仅在错误时有值")
     private String throwableOutput;

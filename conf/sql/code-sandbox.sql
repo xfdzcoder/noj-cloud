@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `execute_result`
     `avg_memory` INT COMMENT '平均使用内存，单位 MB',
     `passed_case_count` INT COMMENT '通过测试用例数量',
     `total_case_count` INT COMMENT '测试用例总数',
-    `input` JSON COMMENT '输入，仅在错误时有值',
-    `output` JSON COMMENT '输出，仅在错误时有值',
+    `input` VARCHAR(1014) COMMENT '输入，仅在错误时有值',
+    `output` VARCHAR(1024) COMMENT '输出，仅在错误时有值',
     `except_output` JSON COMMENT '期望输出，仅在错误时有值',
     `throwable_output` VARCHAR(1024) COMMENT '异常输出，仅在错误时有值',
     `exit_type` INT COMMENT '退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；'
