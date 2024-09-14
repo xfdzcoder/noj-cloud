@@ -4,6 +4,7 @@ import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.github.dockerjava.api.DockerClient;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.config.DockerJavaProperties;
@@ -51,7 +52,7 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
                 classDirFile = compileCode(executeReq.getCodeText(), classDir);
             } catch (CompilerException e) {
                 result.setExitType(ExitTypeEnum.COMPILE_ERROR);
-                result.setThrowableOutput(e.getMessage());
+                result.setThrowableOutput(StrUtil.removePrefix(e.getMessage(), CompilerException.class.getName() + ": "));
                 return result;
             }
 
