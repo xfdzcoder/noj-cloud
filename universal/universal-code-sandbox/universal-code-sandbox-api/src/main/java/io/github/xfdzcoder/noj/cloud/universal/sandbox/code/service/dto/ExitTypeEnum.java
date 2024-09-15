@@ -15,7 +15,12 @@ public enum ExitTypeEnum {
 
     TIMEOUT(3, "超时"),
 
-    MEMORY_OVERFLOW(4, "内存超限");
+    MEMORY_OVERFLOW(4, "内存超限"),
+
+    /**
+     * 此类型的报错信息不应该暴露给前端
+     */
+    SYSTEM_ERROR(5, "系统错误，请检查日志");
 
     private final int code;
 

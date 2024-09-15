@@ -37,6 +37,11 @@ public class QuestionBankController {
     @Autowired
     private QuestionBankService questionBankService;
 
+    @GetMapping("{id}")
+    public Response<QuestionBankResp> getById(@PathVariable("id") Long id) {
+        return Response.ok(QuestionBankResp.toResp(questionBankService.getById(id)));
+    }
+
     @PostMapping("list")
     public Response<IPage<QuestionBankResp>> list(@Validated(Condition.class) @RequestBody QuestionBankCondition condition) {
         Page<QuestionBank> page = questionBankService.page(condition.getPage(), condition.getLambdaQueryWrapper());

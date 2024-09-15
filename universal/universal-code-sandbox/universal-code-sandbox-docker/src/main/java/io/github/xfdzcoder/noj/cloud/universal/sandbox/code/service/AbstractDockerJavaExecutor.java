@@ -108,10 +108,13 @@ public abstract class AbstractDockerJavaExecutor implements DockerJavaExecutor {
                 result.setAvgMemory(execRes.memory());
                 result.setExitType(execRes.type());
                 log.error("容器内部异常: \n{}", JSONUtil.toJsonPrettyStr(result));
+            } else {
+                String errorOutput = ExceptionUtil.stacktraceToString(e);
+                result.setThrowableOutput(errorOutput);
+                result.setExitType(ExitTypeEnum.SYSTEM_ERROR);
+                log.error("容器操作异常：\n{}", errorOutput);
             }
-            log.error(ExceptionUtil.stacktraceToString(e));
             return result;
-
         } finally {
             if (classDirFile != null) {
                 String file = classDirFile.getAbsolutePath();

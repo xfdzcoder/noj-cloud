@@ -55,4 +55,8 @@ public class QuestionBankResp {
         respPage.setRecords(respList);
         return respPage;
     }
+
+    public static QuestionBankResp toResp(QuestionBank questionBank) {
+        return BeanUtil.copyProperties(questionBank, QuestionBankResp.class);
+    }
 }

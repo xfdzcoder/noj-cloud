@@ -64,7 +64,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
         final Long executeInfoId = executeInfo.getId();
         codeExecutor.executeAsync(BeanUtil.copyProperties(executeInfo, ExecuteReq.class))
                     .whenComplete((result, ex) -> {
-                        if (ObjUtil.isNull(ex) && ObjUtil.isNotNull(result)) {
+                        if (ObjUtil.isNull(ex) && ObjUtil.isNotNull(result) && ! ExitTypeEnum.SYSTEM_ERROR.equals(result.getExitType())) {
                             log.info("沙箱执行完成\n响应结果：\n{}\n", JSONUtil.toJsonPrettyStr(result));
                             ExecuteResult executeResult = BeanUtil.copyProperties(result, ExecuteResult.class);
                             executeResult.setExecuteInfoId(executeInfoId);

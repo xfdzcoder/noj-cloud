@@ -35,6 +35,11 @@ public class QuestionInfoController {
     @Autowired
     private QuestionInfoService questionInfoService;
 
+    @GetMapping("{id}")
+    public Response<QuestionInfoResp> getById(@PathVariable("id") Long id) {
+        return Response.ok(QuestionInfoResp.toResp(questionInfoService.getById(id)));
+    }
+
     @PostMapping("list")
     public Response<IPage<QuestionInfoResp>> list(@Validated(Condition.class) @RequestBody QuestionInfoCondition condition) {
         Page<QuestionInfo> page = questionInfoService.page(condition.getPage(), condition.getLambdaQueryWrapper());
