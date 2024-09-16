@@ -83,9 +83,10 @@ public class ACMDockerJavaService extends AbstractDockerJavaExecutor {
         }
 
         if (!finished) {
+            log.error("超时错误，详细错误信息:\n" + stderr.toString(StandardCharsets.UTF_8));
             throw new ExecuteException(
                     new ExecRes(
-                            input, "超时错误，详细错误信息:\n" + stderr.toString(StandardCharsets.UTF_8),
+                            input, "超时错误",
                             0, 0, ExitTypeEnum.TIMEOUT
                     )
             );

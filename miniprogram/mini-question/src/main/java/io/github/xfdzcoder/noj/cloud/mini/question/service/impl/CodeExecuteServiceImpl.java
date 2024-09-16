@@ -81,6 +81,8 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                             executeResult.setQuestionInfoId(questionInfo.getId());
                             if (ObjUtil.isNull( result.getSucceed()) || !result.getSucceed()) {
                                 askAssistant(result, executeInfo, questionInfo, executeResult);
+                            } else {
+                                executeResultService.save(executeResult);
                             }
                             return;
                         }
