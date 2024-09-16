@@ -1,9 +1,14 @@
 package io.github.xfdzcoder.noj.cloud.manage.gateway.filter;
 
+import cn.dev33.satoken.context.SaHolder;
+import cn.dev33.satoken.reactor.context.SaReactorHolder;
 import cn.dev33.satoken.router.SaRouter;
+import cn.dev33.satoken.router.SaRouterStaff;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.util.StrUtil;
 import io.github.xfdzcoder.noj.cloud.manage.common.dependencies.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.manage.gateway.auth.config.AuthProperties;
+import io.github.xfdzcoder.noj.cloud.manage.gateway.auth.config.SaTokenConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

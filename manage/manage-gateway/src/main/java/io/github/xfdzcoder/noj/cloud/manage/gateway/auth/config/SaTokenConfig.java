@@ -47,12 +47,12 @@ public class SaTokenConfig {
 //                .setBeforeAuth()
                 // 指定 [认证函数]: 每次请求执行
                 .setAuth(ignore -> {
-                    SaRouter.match("/**")
-                            .notMatch(SaHttpMethod.OPTIONS)
-//                            .notMatch("/api/*/user/auth/login")
-//                            .notMatch("/api/*/user/auth/register")
-                            .notMatch(authProperties.getExcludePaths())
-                            .check(StpUtil::checkLogin);
+//                    SaRouter.match("/**")
+//                            .notMatch(SaHttpMethod.OPTIONS)
+////                            .notMatch("/api/*/user/auth/login")
+////                            .notMatch("/api/*/user/auth/register")
+//                            .notMatch(authProperties.getExcludePaths())
+//                            .check(StpUtil::checkLogin);
                 })
                 // 指定 [异常处理函数]：每次 [认证函数] 发生异常时执行此函数
                 .setError(e -> {

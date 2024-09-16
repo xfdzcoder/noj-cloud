@@ -18,6 +18,7 @@ public class TestCaseReq implements BaseReq<TestCase> {
     private Long id;
 
     @Schema(description = "所属题目 ID")
+    @NotNull(groups = Save.class, message = "题目信息不能为空")
     private Long questionInfoId;
 
     @Schema(description = "输入")
