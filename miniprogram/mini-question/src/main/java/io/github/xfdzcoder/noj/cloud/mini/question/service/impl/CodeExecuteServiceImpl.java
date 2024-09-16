@@ -47,7 +47,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
     @DubboReference(version = "0.0.1")
     private CodeExecutor codeExecutor;
 
-    @Autowired
+    @DubboReference(version = "0.0.1")
     private SparkService sparkService;
 
     @Override

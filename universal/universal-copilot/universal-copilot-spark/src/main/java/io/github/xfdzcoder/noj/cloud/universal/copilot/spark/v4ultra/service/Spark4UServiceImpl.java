@@ -14,6 +14,7 @@ import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.dto.SparkHt
 import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.exception.SparkHttpException;
 import io.github.xfdzcoder.noj.common.dubbo.DubboServiceThreadFactory;
 import jakarta.annotation.PostConstruct;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
@@ -31,7 +32,7 @@ import java.util.function.Supplier;
  * @author xfdzcoder
  */
 
-@Service
+@DubboService(version = "0.0.1")
 public class Spark4UServiceImpl implements SparkService {
 
     @Autowired
