@@ -12,14 +12,14 @@ spring:
       password: ${nacos.password}
       config:
         file-extension: ${nacos.file-extension}
-        group: ${nacos.mini-group}
+        group: ${nacos.common-group}
         namespace: ${nacos.namespace}
         shared-configs:
           - data-id: redis.yml
             refresh: true
             group: ${nacos.common-group}
       discovery:
-        group: ${nacos.mini-group}
+        group: ${nacos.common-group}
         namespace: ${nacos.namespace}
         ip: ${network.ip}
   config:
