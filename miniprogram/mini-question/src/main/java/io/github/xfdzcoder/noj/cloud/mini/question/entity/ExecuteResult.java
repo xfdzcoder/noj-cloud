@@ -12,10 +12,10 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 运行结果表(ExecuteResp)表实体类
+ * 运行结果表(ExecuteResult)表实体类
  *
  * @author makejava
- * @since 2024-09-10 16:52:53
+ * @since 2024-09-16 18:35:03
  */
 
 @Data
@@ -27,7 +27,7 @@ import java.io.Serializable;
 public class ExecuteResult extends BaseEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -55204706498822727L;
+    private static final long serialVersionUID = 805884256243936904L;
 
     /**
      * 用户 ID
@@ -35,14 +35,12 @@ public class ExecuteResult extends BaseEntity implements Serializable {
     @Schema(description = "用户 ID")
     @TableField("user_id")
     private Long userId;
-
     /**
      * 对应题目 ID
      */
     @Schema(description = "对应题目 ID")
     @TableField("question_info_id")
     private Long questionInfoId;
-
     /**
      * 执行信息 ID
      */
@@ -109,6 +107,18 @@ public class ExecuteResult extends BaseEntity implements Serializable {
     @Schema(description = "退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；")
     @TableField("exit_type")
     private Integer exitType;
+    /**
+     * AI 提示
+     */
+    @Schema(description = "AI 提示")
+    @TableField("assistant")
+    private String assistant;
+    /**
+     * 改正后的代码
+     */
+    @Schema(description = "改正后的代码")
+    @TableField("new_code")
+    private String newCode;
 
 }
 

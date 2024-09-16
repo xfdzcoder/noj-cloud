@@ -35,6 +35,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.universal.copilot</groupId>
+            <artifactId>universal-copilot-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--
             spring-boot-stater
         -->

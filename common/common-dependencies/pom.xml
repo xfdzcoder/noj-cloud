@@ -44,6 +44,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.github.xfdzcoder.noj.common</groupId>
+            <artifactId>common-dubbo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>

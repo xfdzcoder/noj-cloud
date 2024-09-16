@@ -10,10 +10,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class CopilotApplication {
+public class UniversalCopilotApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CopilotApplication.class, args);
+        SpringApplication.run(UniversalCopilotApplication.class, args);
     }
 
 }

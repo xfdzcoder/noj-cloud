@@ -1,5 +1,5 @@
 server:
-  port: 7040
+  port: 7030
   servlet:
     context-path: /question
 spring:
@@ -42,7 +42,7 @@ dubbo:
     address: ${nacos.server-addr}:${nacos.port}
     username: ${nacos.username}
     password: ${nacos.password}
-    group: "SANDBOX"  # 在Group A中注册
+    group: "NOJ"  # 在Group A中注册
   protocol:
     name: dubbo
     port: 8040

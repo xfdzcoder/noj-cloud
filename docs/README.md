@@ -17,16 +17,22 @@
 | service          | port |
 |------------------|------|
 | manage-gateway   | 5000 |
-| code-sandbox     | 5010 |
-| manage-question  | 5030 |
-| manage-user      | 5041 |
-| manage-community | 5050 |
+| manage-question  | 5020 |
+| manage-user      | 5030 |
+| manage-community | 5040 |
 
 ### miniprogram
 
 | service        | port |
 |----------------|------|
 | mini-gateway   | 7000 |
-| copilot        | 7010 |
-| mini-user      | 7020 |
-| mini-community | 7030 |
+| mini-user      | 7010 |
+| mini-community | 7020 |
+| mini-question  | 7030 |
+
+### universal
+
+| service                       | port  |
+|-------------------------------|-------|
+| universal-code-sandbox-docker | 10000 |
+| universal-copilot-spark       | 10010 |

@@ -1,6 +1,5 @@
 package io.github.xfdzcoder.noj.cloud.mini.question.dto.req;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -44,19 +43,25 @@ public class ExecuteResultReq implements BaseReq<ExecuteResult> {
     private Integer totalCaseCount;
 
     @Schema(description = "输入，仅在错误时有值")
-    private Object input;
+    private String input;
 
     @Schema(description = "输出，仅在错误时有值")
-    private Object output;
+    private String output;
 
     @Schema(description = "期望输出，仅在错误时有值")
-    private Object exceptOutput;
+    private String exceptOutput;
 
     @Schema(description = "异常输出，仅在错误时有值")
     private String throwableOutput;
 
     @Schema(description = "退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；")
     private Integer exitType;
+
+    @Schema(description = "AI 提示")
+    private String assistant;
+
+    @Schema(description = "改正后的代码")
+    private String newCode;
 
 
     @Override

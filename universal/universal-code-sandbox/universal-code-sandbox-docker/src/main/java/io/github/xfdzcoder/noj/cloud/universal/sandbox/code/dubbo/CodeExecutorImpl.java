@@ -10,6 +10,7 @@ import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.TestCaseServ
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteReq;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExecuteResp;
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
+import io.github.xfdzcoder.noj.common.dubbo.DubboServiceThreadFactory;
 import jakarta.annotation.PostConstruct;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;

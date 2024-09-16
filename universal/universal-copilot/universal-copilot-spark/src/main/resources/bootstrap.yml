@@ -1,5 +1,5 @@
 server:
-  port: 7010
+  port: 10010
   servlet:
     context-path: /copilot
 spring:
@@ -24,3 +24,14 @@ spring:
         ip: ${network.ip}
   config:
     import: optional:none
+dubbo:
+  registry:
+    protocol: nacos
+    address: ${nacos.server-addr}:${nacos.port}
+    username: ${nacos.username}
+    password: ${nacos.password}
+    group: "NOJ"
+  protocol:
+    name: dubbo
+    port: 11010
+    host: ${network.ip}

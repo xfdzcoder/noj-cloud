@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.universal.sandbox.code.dubbo;
+package io.github.xfdzcoder.noj.common.dubbo;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadFactory;

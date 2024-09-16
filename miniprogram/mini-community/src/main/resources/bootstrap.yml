@@ -1,5 +1,5 @@
 server:
-  port: 7030
+  port: 7020
   servlet:
     context-path: /community
 spring:
