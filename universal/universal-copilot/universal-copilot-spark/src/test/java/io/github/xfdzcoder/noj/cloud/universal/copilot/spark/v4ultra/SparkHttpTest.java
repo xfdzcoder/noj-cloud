@@ -1,4 +1,4 @@
-package io.github.xfdzcoder.noj.cloud.copilot.spark.v4ultra;
+package io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra;
 
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.json.JSON;
@@ -6,7 +6,7 @@ import cn.hutool.json.JSONUtil;
 import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.config.SparkProperties;
 import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.dto.SparkHttpRequest;
 import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.dto.SparkHttpResponse;
-import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.service.SparkService;
+import io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.service.Spark4UServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,11 +43,11 @@ public class SparkHttpTest {
     }
 
     @Autowired
-    private SparkService sparkService;
+    private Spark4UServiceImpl spark4UServiceImpl;
 
     @Test
     public void testSparkService() {
-        System.out.println(sparkService.ask("一句话谈谈你对美剧《无耻之徒》的看法"));
+        System.out.println(spark4UServiceImpl.ask("一句话谈谈你对美剧《无耻之徒》的看法"));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class SparkHttpTest {
         Integer score;
         String comment;
 
-        String resp = sparkService.ask(StrFormatter.format("""
+        String resp = spark4UServiceImpl.ask(StrFormatter.format("""
                 你现在是一个阅卷老师，我会给你一个答案和问题，你需要对其答案进行理解并根据参考答案评分以及点评，评分标准包括：答案正确性、完整性、扩展性。满分100分。
                 下面的三个代码块分别是：问题、答案、参考答案。
                 ```

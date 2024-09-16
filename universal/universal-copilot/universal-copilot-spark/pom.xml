@@ -35,6 +35,12 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.universal.copilot</groupId>
+            <artifactId>universal-copilot-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--
             spring-boot-stater
         -->
@@ -88,6 +94,16 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-nacos-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>
