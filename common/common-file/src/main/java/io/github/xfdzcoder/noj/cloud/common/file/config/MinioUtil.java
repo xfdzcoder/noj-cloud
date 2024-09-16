@@ -5,6 +5,7 @@ import io.minio.MinioClient;
 import io.minio.http.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
+@ConditionalOnBean(MinioClient.class)
 public class MinioUtil {
 
     @Autowired
