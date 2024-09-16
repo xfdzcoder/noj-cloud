@@ -78,9 +78,8 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                             executeResult.setExitType(result.getExitType().getCode());
                             executeResult.setUserId(userId);
                             executeResult.setQuestionInfoId(questionInfo.getId());
-                            boolean saved = executeResultService.save(executeResult);
-                            if (saved && !result.getSucceed()) {
-                                askAssistant(result, executeInfo, questionInfo, executeResult.getId());
+                            if (!result.getSucceed()) {
+                                askAssistant(result, executeInfo, questionInfo, executeResult);
                             }
                             return;
                         }
@@ -94,7 +93,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
         return ExecuteInfoResp.toResp(executeInfo);
     }
 
-    private void askAssistant(ExecuteResp result, ExecuteInfo executeInfo, QuestionInfo questionInfo, Long resultId) {
+    private void askAssistant(ExecuteResp result, ExecuteInfo executeInfo, QuestionInfo questionInfo, ExecuteResult executeResult) {
         CodeOptimizeReq optimizeReq = CodeOptimizeReq.builder()
                                                      .codeText(executeInfo.getCodeText())
                                                      .errorMessage(result.getExitType()
@@ -105,11 +104,9 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
         sparkService.codeOptimize(optimizeReq)
                     .whenComplete((resp, ex) -> {
                         log.info("Assistant 回答完成，回答信息：\n{}", JSONUtil.toJsonPrettyStr(resp));
-                        executeResultService.update(new LambdaUpdateWrapper<ExecuteResult>()
-                                .set(ExecuteResult::getAssistant, resp.getInterpretation())
-                                .set(ExecuteResult::getNewCode, resp.getNewCode())
-                                .eq(ExecuteResult::getId, resultId)
-                        );
+                        executeResult.setAssistant(resp.getInterpretation());
+                        executeResult.setNewCode(resp.getNewCode());
+                        executeResultService.save(executeResult);
                     });
     }
 }

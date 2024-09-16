@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * @author xfdzcoder
  */
@@ -13,7 +16,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CodeOptimizeReq {
+public class CodeOptimizeReq implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -34710369613004044L;
 
     private String codeText;
 
