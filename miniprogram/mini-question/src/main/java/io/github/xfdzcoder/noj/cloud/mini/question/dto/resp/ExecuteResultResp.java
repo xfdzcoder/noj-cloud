@@ -4,11 +4,15 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.mini.question.entity.ExecuteResult;
+import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author xfdzcoder
@@ -59,7 +63,7 @@ public class ExecuteResultResp {
     private String throwableOutput;
 
     @Schema(description = "退出类型，-1：试图越权；0：正常退出；1：编译错误；2：运行错误；3：超时；4：内存超限；")
-    private Integer exitType;
+    private String exitType;
 
     @Schema(description = "AI 提示")
     private String assistant;
@@ -67,11 +71,45 @@ public class ExecuteResultResp {
     @Schema(description = "改正后的代码")
     private String newCode;
 
+    @Schema(description = "对应题目")
+    private QuestionInfoResp questionInfo;
 
-    public static IPage<ExecuteResultResp> toResp(IPage<ExecuteResult> page) {
-        List<ExecuteResultResp> respList = BeanUtil.copyToList(page.getRecords(), ExecuteResultResp.class);
+
+    public static IPage<ExecuteResultResp> toResp(IPage<ExecuteResult> page, Map<Long, QuestionInfoResp> questionInfoRespMap) {
+        List<ExecuteResultResp> respList = page.getRecords().stream()
+                                               .map(result -> {
+                                                   ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
+                                                   resp.setQuestionInfo(questionInfoRespMap.get(resp.getQuestionInfoId()));
+                                                   resp.setExitType(ExitTypeEnum.getMessage(result.getExitType()));
+                                                   return resp;
+                                               })
+                                               .toList();
         IPage<ExecuteResultResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());
         respPage.setRecords(respList);
         return respPage;
+    }
+
+    public static ExecuteResultResp toResp(ExecuteResult executeResult, QuestionInfoResp questionInfo) {
+        ExecuteResultResp resp = BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+        resp.setQuestionInfo(questionInfo);
+        resp.setExitType(ExitTypeEnum.getMessage(executeResult.getExitType()));
+        return resp;
+    }
+
+    public static List<ExecuteResultResp> toResp(List<ExecuteResult> records, Map<Long, QuestionInfoResp> questionInfoId2objMap) {
+        return records.stream()
+                      .map(result -> {
+                          ExecuteResultResp resp = BeanUtil.copyProperties(result, ExecuteResultResp.class);
+                          resp.setQuestionInfo(questionInfoId2objMap.get(resp.getQuestionInfoId()));
+                          resp.setExitType(ExitTypeEnum.getMessage(result.getExitType()));
+                          return resp;
+                      })
+                      .toList();
+    }
+
+    public static ExecuteResultResp toResp(ExecuteResult executeResult) {
+        ExecuteResultResp resp = BeanUtil.copyProperties(executeResult, ExecuteResultResp.class);
+        resp.setExitType(ExitTypeEnum.getMessage(executeResult.getExitType()));
+        return resp;
     }
 }

@@ -33,8 +33,10 @@ public class CodeOptimizeTest {
         req.setQuestionTitle("计算两个数的和");
         req.setQuestionDescription("编写一个Java程序，输入两个整数，输出它们的和");
         req.setErrorMessage("运行错误");
-        CodeOptimizeResp resp = sparkService.codeOptimize(req);
-        System.out.println(resp);
+        sparkService.codeOptimize(req)
+                            .whenComplete((resp, ex) -> {
+                                System.out.println(resp);
+                            });
     }
 
 }

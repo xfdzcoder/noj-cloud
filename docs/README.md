@@ -19,7 +19,7 @@
 | manage-gateway   | 5000 |
 | manage-question  | 5020 |
 | manage-user      | 5030 |
-| manage-community | 5040 |
+| manage-community | 5041 |
 
 ### miniprogram
 
