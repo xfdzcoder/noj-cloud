@@ -24,6 +24,7 @@ import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.dto.ExitType
 import io.github.xfdzcoder.noj.cloud.universal.sandbox.code.service.exception.CodeSandboxException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,19 +79,21 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                             executeResult.setExitType(result.getExitType().getCode());
                             executeResult.setUserId(userId);
                             executeResult.setQuestionInfoId(questionInfo.getId());
-                            if (!result.getSucceed()) {
+                            if (ObjUtil.isNull( result.getSucceed()) || !result.getSucceed()) {
                                 askAssistant(result, executeInfo, questionInfo, executeResult);
                             }
                             return;
                         }
                         throw new CodeSandboxException(StrFormatter.format("沙箱执行异常\n响应信息：{}\n", JSONUtil.toJsonPrettyStr(result)), ex);
-                    }).exceptionally((ex) -> {
-                        log.error("代码沙箱调用失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(ex));
-                        boolean removed = executeInfoService.removeById(executeInfoId);
-                        log.error("本次执行信息 {}，被删除的执行信息 ID: {}", removed ? "已删除" : "删除失败", executeInfoId);
-                        return null;
-                    });
+                    }).exceptionally((ex) -> onException(ex, executeInfoId));
         return ExecuteInfoResp.toResp(executeInfo);
+    }
+
+    private @Nullable <NULL> NULL onException(Throwable ex, Long executeInfoId) {
+        log.error("回调处理失败，异常信息：\n{}", ExceptionUtil.stacktraceToString(ex));
+        boolean removed = executeInfoService.removeById(executeInfoId);
+        log.error("本次执行信息 {}，被删除的执行信息 ID: {}", removed ? "已删除" : "删除失败", executeInfoId);
+        return null;
     }
 
     private void askAssistant(ExecuteResp result, ExecuteInfo executeInfo, QuestionInfo questionInfo, ExecuteResult executeResult) {
@@ -107,6 +110,7 @@ public class CodeExecuteServiceImpl implements CodeExecuteService {
                         executeResult.setAssistant(resp.getInterpretation());
                         executeResult.setNewCode(resp.getNewCode());
                         executeResultService.save(executeResult);
-                    });
+                    })
+                .exceptionally((ex) -> onException(ex, executeInfo.getId()));
     }
 }

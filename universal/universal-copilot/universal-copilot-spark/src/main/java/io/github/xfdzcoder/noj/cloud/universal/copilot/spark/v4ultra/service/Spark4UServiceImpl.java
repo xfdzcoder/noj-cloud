@@ -32,7 +32,7 @@ import java.util.function.Supplier;
  * @author xfdzcoder
  */
 
-@DubboService(version = "0.0.1")
+@DubboService(version = "0.0.1", timeout = 20000)
 public class Spark4UServiceImpl implements SparkService {
 
     @Autowired
