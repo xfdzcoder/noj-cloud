@@ -17,9 +17,12 @@ public class PostInfoCondition extends BaseCondition<PostInfo> {
 
     private Long communityInfoId;
 
+    private Long lastId;
+
     @Override
     public LambdaQueryWrapper<PostInfo> getLambdaQueryWrapper() {
         return super.getLambdaQueryWrapper()
+                .gt(ObjUtil.isNotNull(lastId), PostInfo::getId, lastId)
                 .eq(ObjUtil.isNotNull(communityInfoId), PostInfo::getCommunityInfoId, communityInfoId);
     }
 }

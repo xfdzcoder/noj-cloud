@@ -3,6 +3,7 @@ package io.github.xfdzcoder.noj.cloud.mini.community.dto.resp;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.github.xfdzcoder.noj.cloud.mini.common.api.user.dto.UserResp;
 import io.github.xfdzcoder.noj.cloud.mini.community.entity.PostInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xfdzcoder
@@ -54,9 +56,22 @@ public class PostInfoResp {
     @Schema(description = "状态，0为草稿，1为已发布，2为已封禁")
     private Integer status;
 
+    @Schema(description = "作者头像")
+    private String avatar;
 
-    public static IPage<PostInfoResp> toResp(IPage<PostInfo> page) {
-        List<PostInfoResp> respList = BeanUtil.copyToList(page.getRecords(), PostInfoResp.class);
+    @Schema(description = "作者昵称")
+    private String authorName;
+
+
+    public static IPage<PostInfoResp> toResp(IPage<PostInfo> page, Map<Long, UserResp> userId2objMap) {
+        List<PostInfoResp> respList = page.getRecords().stream()
+                                      .map(info -> {
+                                          PostInfoResp resp = BeanUtil.copyProperties(info, PostInfoResp.class);
+                                          UserResp userResp = userId2objMap.get(resp.getAuthor());
+                                          resp.setAvatar(userResp.getAvatar());
+                                          resp.setAuthorName(userResp.getNickname());
+                                          return resp;
+                                      }).toList();
         IPage<PostInfoResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());
         respPage.setRecords(respList);
         return respPage;

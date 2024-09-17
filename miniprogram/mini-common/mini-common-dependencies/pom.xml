@@ -32,6 +32,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.github.xfdzcoder.noj.cloud.mini.common</groupId>
+            <artifactId>mini-common-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>

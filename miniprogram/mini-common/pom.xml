@@ -15,6 +15,7 @@
     <modules>
         <module>mini-common-dependencies</module>
         <module>mini-common-cache</module>
+        <module>mini-common-api</module>
     </modules>
 
     <properties>

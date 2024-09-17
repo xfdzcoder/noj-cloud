@@ -36,3 +36,14 @@ spring:
         ip: ${network.ip}
   config:
     import: optional:none
+dubbo:
+  registry:
+    protocol: nacos
+    address: ${nacos.server-addr}:${nacos.port}
+    username: ${nacos.username}
+    password: ${nacos.password}
+    group: "NOJ"  # 在Group A中注册
+  protocol:
+    name: dubbo
+    port: 8020
+    host: ${network.ip}

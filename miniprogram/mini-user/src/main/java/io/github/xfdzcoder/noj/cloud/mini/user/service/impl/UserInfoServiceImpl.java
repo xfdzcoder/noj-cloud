@@ -7,7 +7,7 @@ import io.github.xfdzcoder.noj.cloud.mini.user.service.UserInfoService;
 import org.springframework.stereotype.Service;
 
 /**
- * 用户信息表(UserInfo)表服务实现类
+ * 用户信息表(UserResp)表服务实现类
  *
  * @author makejava
  * @since 2024-09-03 21:53:15

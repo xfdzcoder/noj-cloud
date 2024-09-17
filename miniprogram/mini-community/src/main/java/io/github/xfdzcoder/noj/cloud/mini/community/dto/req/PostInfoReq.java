@@ -18,9 +18,6 @@ public class PostInfoReq implements BaseReq<PostInfo> {
     @NotNull(groups = Update.class, message = "ID 不能为空")
     private Long id;
 
-    @Schema(description = "作者")
-    private Long author;
-
     @Schema(description = "所属社群")
     private Long communityInfoId;
 
@@ -36,18 +33,14 @@ public class PostInfoReq implements BaseReq<PostInfo> {
     @Schema(description = "类型，0为正常帖子，1为错题反馈，2为新题建议")
     private Integer type;
 
-    @Schema(description = "点赞量")
-    private Integer goodCount;
-
-    @Schema(description = "评论量")
-    private Integer commentCount;
-
     @Schema(description = "是否置顶")
     private Boolean topped;
 
     @Schema(description = "状态，0为草稿，1为已发布，2为已封禁")
     private Integer status;
 
+    @Schema(description = "正文")
+    private String content;
 
     @Override
     public Class<PostInfo> getEntityClass() {

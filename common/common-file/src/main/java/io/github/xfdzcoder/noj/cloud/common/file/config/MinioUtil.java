@@ -1,5 +1,8 @@
 package io.github.xfdzcoder.noj.cloud.common.file.config;
 
+import cn.hutool.core.util.StrUtil;
+import io.github.xfdzcoder.noj.cloud.common.cache.operator.RedisOperator;
+import io.github.xfdzcoder.noj.cloud.common.file.config.redis.PresignedUrlCache;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.MinioClient;
 import io.minio.http.Method;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,20 +29,32 @@ public class MinioUtil {
     @Autowired
     private MinioClient minioClient;
 
-    public String getPresignedObjectUrl(String key) {
-        GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
-                                                                  .expiry(1, TimeUnit.DAYS)
-                                                                  .method(Method.GET)
-                                                                  .region(minioProperties.getRegion())
-                                                                  .bucket(minioProperties.getBucket())
-                                                                  .object(key)
-                                                                  .build();
+    @Autowired
+    private RedisOperator redisOperator;
 
-        try {
-            return minioClient.getPresignedObjectUrl(args);
-        } catch (Exception e) {
-            throw new MinioException(e);
+    public String getPresignedObjectUrl(String key) {
+        String url = redisOperator.opsStr().getBean(new PresignedUrlCache(key));
+        if (StrUtil.isBlank(url)) {
+            GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
+                                                                      .expiry(1, TimeUnit.DAYS)
+                                                                      .method(Method.GET)
+                                                                      .region(minioProperties.getRegion())
+                                                                      .bucket(minioProperties.getBucket())
+                                                                      .object(key)
+                                                                      .build();
+
+            try {
+                 url = minioClient.getPresignedObjectUrl(args);
+                 redisOperator.opsStr().set(new PresignedUrlCache(key, url));
+                return url;
+            } catch (Exception e) {
+                throw new MinioException(e);
+            }
         }
+        return url;
     }
 
+    public List<String> getPresignedObjectUrl(List<String> avatarList) {
+        return avatarList.stream().map(this::getPresignedObjectUrl).toList();
+    }
 }

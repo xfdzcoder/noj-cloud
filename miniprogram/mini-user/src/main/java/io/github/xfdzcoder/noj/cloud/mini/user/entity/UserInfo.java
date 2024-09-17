@@ -10,7 +10,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 用户信息表(UserInfo)表实体类
+ * 用户信息表(UserResp)表实体类
  *
  * @author makejava
  * @since 2024-09-03 21:53:15

@@ -29,9 +29,6 @@ public abstract class AbstractStringRedisCache<V> implements StringRedisCache<V>
 
     protected TimeUnit timeUnit;
 
-    public AbstractStringRedisCache() {
-    }
-
     public AbstractStringRedisCache(String key) {
         this.key = key;
     }
@@ -83,7 +80,7 @@ public abstract class AbstractStringRedisCache<V> implements StringRedisCache<V>
     public V getBeanAndSet() {
         if (ObjUtil.isNull(this.bean)) {
             if (StrUtil.isBlank(this.value)) {
-                throw new RedisException("异常操作，value 和 bean 都为空");
+                return null;
             }
             V bean = doGetBean(value);
             setBeanAndValue(bean, value);

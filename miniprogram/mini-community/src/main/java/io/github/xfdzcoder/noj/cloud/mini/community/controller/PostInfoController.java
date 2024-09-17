@@ -8,15 +8,25 @@ import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Delete;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Save;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Update;
 import io.github.xfdzcoder.noj.cloud.common.web.pojo.Response;
+import io.github.xfdzcoder.noj.cloud.mini.common.api.user.UserService;
+import io.github.xfdzcoder.noj.cloud.mini.common.api.user.dto.UserResp;
+import io.github.xfdzcoder.noj.cloud.mini.common.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.condition.PostInfoCondition;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.req.PostInfoReq;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.resp.PostInfoResp;
+import io.github.xfdzcoder.noj.cloud.mini.community.entity.PostContent;
 import io.github.xfdzcoder.noj.cloud.mini.community.entity.PostInfo;
+import io.github.xfdzcoder.noj.cloud.mini.community.service.PostContentService;
 import io.github.xfdzcoder.noj.cloud.mini.community.service.PostInfoService;
 import jakarta.validation.constraints.NotNull;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 帖子表(PostInfo)表控制层
@@ -35,15 +45,29 @@ public class PostInfoController {
     @Autowired
     private PostInfoService postInfoService;
 
+    @Autowired
+    private PostContentService postContentService;
+
+    @DubboReference(version = "0.0.1")
+    private UserService userService;
+
     @PostMapping("list")
     public Response<IPage<PostInfoResp>> list(@Validated(Condition.class) @RequestBody PostInfoCondition condition) {
         Page<PostInfo> page = postInfoService.page(condition.getPage(), condition.getLambdaQueryWrapper());
-        return Response.ok(PostInfoResp.toResp(page));
+        Set<Long> userIdList = page.getRecords().stream().map(PostInfo::getAuthor).collect(Collectors.toSet());
+        Map<Long, UserResp> userId2objMap = userService.listByIds(userIdList)
+                                                       .stream()
+                                                       .collect(Collectors.toMap(UserResp::getId, v -> v));
+        return Response.ok(PostInfoResp.toResp(page, userId2objMap));
     }
 
     @PostMapping
-    public Response<String> save(@Validated(Save.class) @RequestBody PostInfoReq req) {
-        postInfoService.save(req.toEntity());
+    public Response<String> save(@Validated(Save.class) @RequestBody PostInfoReq req, @RequestHeader(AuthConst.USER_ID) Long userId) {
+        PostInfo entity = req.toEntity();
+        entity.setAuthor(userId);
+        postInfoService.save(entity);
+        PostContent content = new PostContent(entity.getId(), req.getContent());
+        postContentService.save(content);
         return Response.ok();
     }
 

@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 用户信息表(UserInfo)表控制层
+ * 用户信息表(UserResp)表控制层
  *
  * @author makejava
  * @since 2024-09-03 21:53:15
