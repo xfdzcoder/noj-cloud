@@ -3,6 +3,7 @@ package io.github.xfdzcoder.noj.cloud.universal.copilot.spark.v4ultra.config;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
+@RefreshScope
 @ConfigurationProperties("ai.spark")
 public class SparkProperties {
 
