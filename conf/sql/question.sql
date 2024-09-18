@@ -76,6 +76,43 @@ CREATE TABLE IF NOT EXISTS `test_case`
 ) COMMENT '测试用例表';
 
 
+DROP TABLE IF EXISTS `like_comment`;
+CREATE TABLE IF NOT EXISTS `like_comment`
+(
+    `id` BIGINT PRIMARY KEY COMMENT '主键 ID，通过雪花算法生成',
+    `create_date_time` DATETIME COMMENT '创建时间',
+    `update_date_time` DATETIME COMMENT '更新时间',
+    `deleted` TINYINT COMMENT '逻辑删除',
+
+    `user_id` BIGINT COMMENT '点赞的用户 ID',
+    `comment_id` BIGINT COMMENT '被点赞的评论 ID',
+    `post_info_id` BIGINT COMMENT '被点赞的评论的文章 ID'
+) COMMENT '评论点赞表';
+
+DROP TABLE IF EXISTS `like_post`;
+CREATE TABLE IF NOT EXISTS `like_post`
+(
+    `id` BIGINT PRIMARY KEY COMMENT '主键 ID，通过雪花算法生成',
+    `create_date_time` DATETIME COMMENT '创建时间',
+    `update_date_time` DATETIME COMMENT '更新时间',
+    `deleted` TINYINT COMMENT '逻辑删除',
+
+    `user_id` BIGINT COMMENT '点赞的用户 ID',
+    `post_info_id` BIGINT COMMENT '点赞的文章 ID'
+) COMMENT '文章点赞表';
+
+DROP TABLE IF EXISTS `like_question_bank`;
+CREATE TABLE IF NOT EXISTS `like_question_bank`
+(
+    `id` BIGINT PRIMARY KEY COMMENT '主键 ID，通过雪花算法生成',
+    `create_date_time` DATETIME COMMENT '创建时间',
+    `update_date_time` DATETIME COMMENT '更新时间',
+    `deleted` TINYINT COMMENT '逻辑删除',
+
+    `user_id` BIGINT COMMENT '点赞的用户 ID',
+    `question_bank_id` BIGINT COMMENT '点赞的题库 ID'
+) COMMENT '题库点赞表';
+
 
 
 INSERT INTO `question_bank` (`id`, `create_date_time`, `update_date_time`, `deleted`, `community_id`, `identifier`, `name`, `description`, `question_count`, `good_count`, `comment_count`, `study_count`)

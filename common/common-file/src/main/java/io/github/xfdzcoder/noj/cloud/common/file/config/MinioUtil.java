@@ -32,11 +32,11 @@ public class MinioUtil {
     @Autowired
     private RedisOperator redisOperator;
 
-    public String getPresignedObjectUrl(String key) {
+    public String getPresignedObjectUrl(String key, Integer timeout, TimeUnit timeUnit) {
         String url = redisOperator.opsStr().getBean(new PresignedUrlCache(key));
         if (StrUtil.isBlank(url)) {
             GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
-                                                                      .expiry(1, TimeUnit.DAYS)
+                                                                      .expiry(timeout, timeUnit)
                                                                       .method(Method.GET)
                                                                       .region(minioProperties.getRegion())
                                                                       .bucket(minioProperties.getBucket())
@@ -54,7 +54,7 @@ public class MinioUtil {
         return url;
     }
 
-    public List<String> getPresignedObjectUrl(List<String> avatarList) {
-        return avatarList.stream().map(this::getPresignedObjectUrl).toList();
+    public List<String> getPresignedObjectUrl(List<String> keyList, Integer timeout, TimeUnit timeUnit) {
+        return keyList.stream().map(key -> getPresignedObjectUrl(key, timeout, timeUnit)).toList();
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xfdzcoder
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
         }
         List<UserInfo> userInfoList = userInfoService.listByIds(ids);
         List<String> avatarList = userInfoList.stream().map(UserInfo::getAvatar).toList();
-        List<String> accessAvatarList = minioUtil.getPresignedObjectUrl(avatarList);
+        List<String> accessAvatarList = minioUtil.getPresignedObjectUrl(avatarList, 180, TimeUnit.DAYS);
         for (int i = 0; i < userInfoList.size(); i++) {
             UserInfo info = userInfoList.get(i);
             info.setAvatar(accessAvatarList.get(i));

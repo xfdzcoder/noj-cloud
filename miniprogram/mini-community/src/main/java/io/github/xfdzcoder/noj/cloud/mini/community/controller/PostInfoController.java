@@ -15,8 +15,10 @@ import io.github.xfdzcoder.noj.cloud.mini.common.consts.AuthConst;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.condition.PostInfoCondition;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.req.PostInfoReq;
 import io.github.xfdzcoder.noj.cloud.mini.community.dto.resp.PostInfoResp;
+import io.github.xfdzcoder.noj.cloud.mini.community.entity.LikePost;
 import io.github.xfdzcoder.noj.cloud.mini.community.entity.PostContent;
 import io.github.xfdzcoder.noj.cloud.mini.community.entity.PostInfo;
+import io.github.xfdzcoder.noj.cloud.mini.community.service.LikePostService;
 import io.github.xfdzcoder.noj.cloud.mini.community.service.PostContentService;
 import io.github.xfdzcoder.noj.cloud.mini.community.service.PostInfoService;
 import jakarta.validation.constraints.NotNull;
@@ -50,6 +52,9 @@ public class PostInfoController {
     @Autowired
     private PostContentService postContentService;
 
+    @Autowired
+    private LikePostService likePostService;
+
     @DubboReference(version = "0.0.1")
     private UserService userService;
 
@@ -60,13 +65,21 @@ public class PostInfoController {
     }
 
     @PostMapping("list")
-    public Response<IPage<PostInfoResp>> list(@Validated(Condition.class) @RequestBody PostInfoCondition condition) {
+    public Response<IPage<PostInfoResp>> list(@Validated(Condition.class) @RequestBody PostInfoCondition condition,
+                                              @RequestHeader(AuthConst.USER_ID) Long userId) {
         Page<PostInfo> page = postInfoService.page(condition.getPage(), condition.getLambdaQueryWrapper());
+        List<Long> postInfoIdList = page.getRecords().stream().map(PostInfo::getId).toList();
+        Set<Long> lickPostIds = likePostService.list(new LambdaQueryWrapper<LikePost>()
+                                                   .eq(LikePost::getUserId, userId)
+                                                   .in(LikePost::getPostInfoId, postInfoIdList))
+                                           .stream()
+                                           .map(LikePost::getPostInfoId)
+                                           .collect(Collectors.toSet());
         List<Long> userIdList = page.getRecords().stream().map(PostInfo::getAuthor).collect(Collectors.toList());
         Map<Long, UserResp> userId2objMap = userService.listByIds(userIdList)
                                                        .stream()
                                                        .collect(Collectors.toMap(UserResp::getId, v -> v));
-        return Response.ok(PostInfoResp.toResp(page, userId2objMap));
+        return Response.ok(PostInfoResp.toResp(page, userId2objMap, lickPostIds));
     }
 
     @PostMapping

@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author xfdzcoder
@@ -66,14 +67,18 @@ public class PostInfoResp {
     @Schema(description = "发表时间")
     private LocalDateTime createDateTime;
 
+    @Schema(description = "当前用户是否点赞")
+    private Boolean liked;
 
-    public static IPage<PostInfoResp> toResp(IPage<PostInfo> page, Map<Long, UserResp> userId2objMap) {
+
+    public static IPage<PostInfoResp> toResp(IPage<PostInfo> page, Map<Long, UserResp> userId2objMap, Set<Long> lickPostIds) {
         List<PostInfoResp> respList = page.getRecords().stream()
                                       .map(info -> {
                                           PostInfoResp resp = BeanUtil.copyProperties(info, PostInfoResp.class);
                                           UserResp userResp = userId2objMap.get(resp.getAuthor());
                                           resp.setAvatar(userResp.getAvatar());
                                           resp.setAuthorName(userResp.getNickname());
+                                          resp.setLiked(lickPostIds.contains(info.getId()));
                                           return resp;
                                       }).toList();
         IPage<PostInfoResp> respPage = Page.of(page.getCurrent(), page.getSize(), page.getTotal());

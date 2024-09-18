@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xfdzcoder
@@ -62,7 +63,7 @@ public class FileController {
     @GetMapping("avatar/access")
     public Response<String> getAccessUrl(@RequestHeader(AuthConst.USER_ID) Long userId) {
         UserInfo userInfo = userInfoService.getById(userId);
-        return Response.ok(minioUtil.getPresignedObjectUrl(userInfo.getAvatar()));
+        return Response.ok(minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 180, TimeUnit.DAYS));
     }
 
 }

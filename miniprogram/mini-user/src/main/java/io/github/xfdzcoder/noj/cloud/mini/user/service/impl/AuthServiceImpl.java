@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author xfdzcoder
  */
@@ -37,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
             return null;
         }
 
-        String url = minioUtil.getPresignedObjectUrl(userInfo.getAvatar());
+        String url = minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 180, TimeUnit.DAYS);
         userInfo.setAvatar(url);
 
         StpUtil.login(userInfo.getId());
