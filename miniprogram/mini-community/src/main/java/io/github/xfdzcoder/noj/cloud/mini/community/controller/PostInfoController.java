@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.mini.community.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Condition;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,10 +53,16 @@ public class PostInfoController {
     @DubboReference(version = "0.0.1")
     private UserService userService;
 
+    @GetMapping("/content/{id}")
+    public Response<String> getByInfoId(@PathVariable("id") Long id) {
+        return Response.ok(postContentService.getOne(new LambdaQueryWrapper<PostContent>()
+                .eq(PostContent::getPostInfoId, id)).getContent());
+    }
+
     @PostMapping("list")
     public Response<IPage<PostInfoResp>> list(@Validated(Condition.class) @RequestBody PostInfoCondition condition) {
         Page<PostInfo> page = postInfoService.page(condition.getPage(), condition.getLambdaQueryWrapper());
-        Set<Long> userIdList = page.getRecords().stream().map(PostInfo::getAuthor).collect(Collectors.toSet());
+        List<Long> userIdList = page.getRecords().stream().map(PostInfo::getAuthor).collect(Collectors.toList());
         Map<Long, UserResp> userId2objMap = userService.listByIds(userIdList)
                                                        .stream()
                                                        .collect(Collectors.toMap(UserResp::getId, v -> v));

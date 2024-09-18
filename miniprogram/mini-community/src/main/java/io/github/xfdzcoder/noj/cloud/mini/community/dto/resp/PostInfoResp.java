@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +62,9 @@ public class PostInfoResp {
 
     @Schema(description = "作者昵称")
     private String authorName;
+
+    @Schema(description = "发表时间")
+    private LocalDateTime createDateTime;
 
 
     public static IPage<PostInfoResp> toResp(IPage<PostInfo> page, Map<Long, UserResp> userId2objMap) {
