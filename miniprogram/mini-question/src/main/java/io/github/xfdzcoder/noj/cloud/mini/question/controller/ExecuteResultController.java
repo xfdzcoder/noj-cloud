@@ -1,6 +1,7 @@
 package io.github.xfdzcoder.noj.cloud.mini.question.controller;
 
 
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -71,10 +72,12 @@ public class ExecuteResultController {
         return Response.ok(executeResultService.heatmap(userId));
     }
 
-    @GetMapping("recently")
-    public Response<List<ExecuteResultResp>> recently(@RequestHeader(AuthConst.USER_ID) Long userId) {
-        Page<ExecuteResult> page = executeResultService.page(Page.of(1, 5), new LambdaQueryWrapper<ExecuteResult>()
+    @GetMapping("recently/{lastId}")
+    public Response<List<ExecuteResultResp>> recently(@RequestHeader(AuthConst.USER_ID) Long userId,
+                                                      @PathVariable(value = "lastId") String lastId) {
+        Page<ExecuteResult> page = executeResultService.page(Page.of(1, 10), new LambdaQueryWrapper<ExecuteResult>()
                 .eq(ExecuteResult::getUserId, userId)
+                .gt(NumberUtil.isNumber(lastId), ExecuteResult::getId, lastId)
         );
         List<Long> questionInfoIdList = page.getRecords().stream().map(ExecuteResult::getQuestionInfoId).toList();
         Map<Long, QuestionInfoResp> questionInfoId2objMap = questionInfoService.listRespByIds(questionInfoIdList);

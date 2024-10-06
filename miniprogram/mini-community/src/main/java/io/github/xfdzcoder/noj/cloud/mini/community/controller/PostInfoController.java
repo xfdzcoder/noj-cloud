@@ -1,6 +1,8 @@
 package io.github.xfdzcoder.noj.cloud.mini.community.controller;
 
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Opt;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -27,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -69,12 +72,14 @@ public class PostInfoController {
                                               @RequestHeader(AuthConst.USER_ID) Long userId) {
         Page<PostInfo> page = postInfoService.page(condition.getPage(), condition.getLambdaQueryWrapper());
         List<Long> postInfoIdList = page.getRecords().stream().map(PostInfo::getId).toList();
-        Set<Long> lickPostIds = likePostService.list(new LambdaQueryWrapper<LikePost>()
-                                                   .eq(LikePost::getUserId, userId)
-                                                   .in(LikePost::getPostInfoId, postInfoIdList))
-                                           .stream()
-                                           .map(LikePost::getPostInfoId)
-                                           .collect(Collectors.toSet());
+        Set<Long> lickPostIds = Opt.ofEmptyAble(postInfoIdList)
+                .map(list -> likePostService.list(new LambdaQueryWrapper<LikePost>()
+                                                    .eq(LikePost::getUserId, userId)
+                                                    .in(LikePost::getPostInfoId, list))
+                                            .stream()
+                                            .map(LikePost::getPostInfoId)
+                                            .collect(Collectors.toSet()))
+                .orElse(Collections.emptySet());
         List<Long> userIdList = page.getRecords().stream().map(PostInfo::getAuthor).collect(Collectors.toList());
         Map<Long, UserResp> userId2objMap = userService.listByIds(userIdList)
                                                        .stream()

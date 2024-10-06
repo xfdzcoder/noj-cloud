@@ -63,7 +63,7 @@ public class FileController {
     @GetMapping("avatar/access")
     public Response<String> getAccessUrl(@RequestHeader(AuthConst.USER_ID) Long userId) {
         UserInfo userInfo = userInfoService.getById(userId);
-        return Response.ok(minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 180, TimeUnit.DAYS));
+        return Response.ok(minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 7, TimeUnit.DAYS));
     }
 
 }

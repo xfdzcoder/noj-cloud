@@ -2,6 +2,7 @@ package io.github.xfdzcoder.noj.cloud.mini.community.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.xfdzcoder.noj.cloud.common.dao.dto.BaseReq.Condition;
@@ -62,7 +63,18 @@ public class LikeCommentController {
                                  @RequestHeader(AuthConst.USER_ID) Long userId) {
         LikeComment entity = req.toEntity();
         entity.setUserId(userId);
-        likeCommentService.save(entity);
+        if (likeCommentService.exists(new LambdaQueryWrapper<LikeComment>()
+                .eq(LikeComment::getCommentId, req.getCommentId())
+                .eq(LikeComment::getUserId, userId)
+                .eq(LikeComment::getPostInfoId, req.getPostInfoId()))) {
+            likeCommentService.remove(new LambdaUpdateWrapper<LikeComment>()
+                    .eq(LikeComment::getCommentId, req.getCommentId())
+                    .eq(LikeComment::getUserId, userId)
+                    .eq(LikeComment::getPostInfoId, req.getPostInfoId())
+            );
+        } else {
+            likeCommentService.save(entity);
+        }
         return Response.ok();
     }
 

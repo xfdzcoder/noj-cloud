@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
             return null;
         }
 
-        String url = minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 180, TimeUnit.DAYS);
+        String url = minioUtil.getPresignedObjectUrl(userInfo.getAvatar(), 7, TimeUnit.DAYS);
         userInfo.setAvatar(url);
 
         StpUtil.login(userInfo.getId());

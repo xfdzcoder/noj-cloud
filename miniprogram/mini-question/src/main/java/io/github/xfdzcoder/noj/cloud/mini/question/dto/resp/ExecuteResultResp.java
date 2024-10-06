@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,9 @@ public class ExecuteResultResp {
 
     @Schema(description = "改正后的代码")
     private String newCode;
+
+    @Schema(description = "创建时间")
+    private LocalDateTime createDateTime;
 
     @Schema(description = "对应题目")
     private QuestionInfoResp questionInfo;
